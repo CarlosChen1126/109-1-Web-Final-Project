@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Registrants from '../components/Registrants';
 import Management from '../components/Management';
+import ManagerLogin from '../components/ManagerLogin';
 import {
   BrowserRouter as Router,
   Switch,
@@ -23,6 +24,9 @@ function App() {
             <li>
               <Link to="/users">Users</Link>
             </li>
+            <li>
+              <Link to="/ManagerLogin">ManagerLogin</Link>
+            </li>
           </ul>
         </nav>
 
@@ -35,9 +39,13 @@ function App() {
           <Route path="/users">
             <Users />
           </Route>
+          <Route path='/ManagerLogin'>
+            <ManagerLogin />
+          </Route>
           <Route path="/">
             <Registrants />
           </Route>
+
         </Switch>
       </div>
     </Router>
