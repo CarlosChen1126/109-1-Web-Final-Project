@@ -22,9 +22,6 @@ function App() {
               <Link to="/Management">Management</Link>
             </li>
             <li>
-              <Link to="/users">Users</Link>
-            </li>
-            <li>
               <Link to="/ManagerLogin">ManagerLogin</Link>
             </li>
           </ul>
@@ -35,9 +32,6 @@ function App() {
         <Switch>
           <Route path="/Management">
             <Management />
-          </Route>
-          <Route path="/users">
-            <Users />
           </Route>
           <Route path='/ManagerLogin'>
             <ManagerLogin />
@@ -53,9 +47,5 @@ function App() {
 }
 
 
-
-function Users() {
-  return <h2>Users</h2>;
-}
 
 export default App;
