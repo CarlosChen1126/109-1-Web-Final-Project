@@ -13,9 +13,9 @@ import {
 function App() {
   return (
     <Router>
-      <div>
+      <div className="nav-wrapper">
         <nav>
-          <ul>
+          <ul className="right">
             <li>
               <Link to="/">Registrants</Link>
             </li>
