@@ -3,6 +3,7 @@ import Registrants from '../components/Registrants';
 import Management from '../components/Management';
 import ManagerLogin from '../components/ManagerLogin';
 import Inquery from '../components/Inquery';
+import Login from '../components/Login';
 import {
   BrowserRouter as Router,
   Switch,
@@ -36,6 +37,9 @@ function App() {
         <Switch>
           <Route path="/Management">
             <Management />
+          </Route>
+          <Route path="/Login">
+            <Login />
           </Route>
           <Route path='/ManagerLogin'>
             <ManagerLogin />

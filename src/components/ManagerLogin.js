@@ -4,11 +4,13 @@ import PropTypes from 'prop-types';
 
 
 
+
+
 function ManagerLogin() {
   const handleSubmit=()=>{};
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={ handleSubmit }>
         <h2>ManagerLogin</h2>
         <div>
             {'帳號：'}
