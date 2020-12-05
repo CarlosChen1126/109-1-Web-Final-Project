@@ -6,9 +6,8 @@ exports.Login = async (req, res) => {
     const account = req.body.account;
     const password = req.body.password;
     const [loginResult] = await Login.find({account: account, password: password});
-    console.log('in login')
     if(loginResult){
-        res.status(200).send({message: 'successful'});
+        res.status(200).send({message: 'success'});
     }
     else{
         res.status(200).send({message: 'failed'});
