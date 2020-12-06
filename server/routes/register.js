@@ -13,9 +13,15 @@ exports.Register = async (req, res) => {
     console.log(name);
     const register = new Register({stdID: stdID, name: name});
     register.save(function (err) {
-        if (err) return handleError(err);
+        if (err) {
+            res.status(200).send({message: 'failed', error: err});
+            return handleError(err);
+        }
         // saved!
-        res.status(200).send({message: 'success', error: err});
+        else {
+            res.status(200).send({message: 'success', error: err});
+        }
+        
     });
 
     const [registerResult] = await Register.find();

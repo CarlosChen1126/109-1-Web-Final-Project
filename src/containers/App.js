@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Registrants from '../components/Registrants';
 import Management from '../components/Management';
 import ManagerLogin from '../components/ManagerLogin';
@@ -12,6 +12,9 @@ import {
 } from "react-router-dom";
 
 function App() {
+  useEffect (()=>{
+    localStorage.setItem('auth',false)
+},[])
   return (
     <Router>
       <div className="nav-wrapper">
@@ -21,13 +24,7 @@ function App() {
               <Link to="/">Registrants</Link>
             </li>
             <li>
-              <Link to="/Management">Management</Link>
-            </li>
-            <li>
               <Link to="/ManagerLogin">ManagerLogin</Link>
-            </li>
-            <li>
-              <Link to="/Inquery">Inquery</Link>
             </li>
           </ul>
         </nav>
@@ -35,17 +32,8 @@ function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/Management">
-            <Management />
-          </Route>
-          <Route path="/Login">
-            <Login />
-          </Route>
           <Route path='/ManagerLogin'>
             <ManagerLogin />
-          </Route>
-          <Route path='/Inquery'>
-            <Inquery />
           </Route>
           <Route path="/">
             <Registrants />

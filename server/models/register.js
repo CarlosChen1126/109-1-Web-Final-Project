@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const RegisterSchema = Schema({
     stdID: {
 		type: String,
-        required: [true, 'StdID field is required.']
+        required: [true, 'StdID field is required.'],
+        unique: true
 	},
 	name: {
 		type: String,

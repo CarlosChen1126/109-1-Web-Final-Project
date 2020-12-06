@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from 'react'
 import PropTypes from 'prop-types';
 import { getUserData,deleteUserData,updateUserData } from '../axios'
+import logout from './Logout'
 
 
 
@@ -74,6 +75,8 @@ function Management() {
       <Search text="學號" onClick={handle_search}/>
       <Search text="姓名" onClick={handle_search}/>
       <button onClick={handle_search}>顯示所有資料</button>
+      <br/>
+      <button onClick={logout}>登出</button>
       {display_data[0]==="" ? <div></div> : <Display display_data={display_data} onClick={handle_revise_delete}></Display>}
     </>
   );

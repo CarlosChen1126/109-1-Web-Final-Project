@@ -1,16 +1,31 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import { login } from '../axios'
+import { Redirect } from "react-router-dom";
 
 function ManagerLogin() {
-  const [loginSuccess, setloginSuccess] = useState(false)  // true if answered all questions
-  const [account, setAccount] = useState("")     // to store questions
-  const [password, setPassword] = useState("")               // to record your answers
+  const [loginSuccess, setloginSuccess] = useState(false)  
+  const [account, setAccount] = useState("")     
+  const [password, setPassword] = useState("")               
   const [warning, setWarning] = useState("");
   const handleSubmit = async (event) => {
     event.preventDefault(); 
-    login( account, password ) ? setloginSuccess(true) : setWarning("登入失敗");
-  }
+    
+    const success = await login(account,password);
+    console.log(success);
+
+    if (success === 'success') {
+      setloginSuccess(true)
+      localStorage.setItem("auth", true);
+      window.location = './Management';
+    } else {
+      setWarning("登入失敗")
+      localStorage.setItem("auth", false);
+    }
+    
+    
+} 
+    
   
 
   const handleAccountChange = (e) => {
@@ -40,7 +55,7 @@ function ManagerLogin() {
          <input type='submit' value='送出'></input>
        </form>
        </React.Fragment>
-       : <React.Fragment>登入成功</React.Fragment>
+       : <React.Fragment><Redirect to="/Management" /></React.Fragment>
       }
     
    

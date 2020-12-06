@@ -10,8 +10,17 @@ function Registrants() {
   const [warning, setWarning] = useState("");
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const stdIDUpp = stdID.toUpperCase();
+    setStdID(stdIDUpp);
+    const success = await register( stdID, name );
+    console.log(success);
+    (success === "success") ? setRegisterSuccess(true) : setWarning("帳號已註冊");
     
-    register( stdID, name ) ? setRegisterSuccess(true) : setWarning("登入失敗");
+    
+  }
+
+  function validateForm() {
+    return stdID.length === 9 && name.length > 0;
   }
   
 
@@ -39,7 +48,7 @@ function Registrants() {
              <input type="text" placeholder="Your Name" name='name' value={name} onChange={handleNameChange}></input>
          </div>
          <div>{warning}</div>
-         <input type='submit' value='送出'></input>
+         <input type='submit' value='送出' disabled={!validateForm()}></input>
        </form>
        </React.Fragment>
        : <React.Fragment>註冊成功</React.Fragment>

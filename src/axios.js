@@ -10,28 +10,17 @@ const login = async (account, password) => {
         data: {message}
       } = await instance.post('/login',  {account: account, password: password});
       //console.log(message);
-      if(message === 'successful'){
-        return(true);     
-      }
-      else{ 
-          return(false);      
-      }
+      return await (message);
 }
 
 const register = async (stdID, name) => {
     const {
-        data: {message: message,
+        data: {
+        message: message,
         registerResult: registerResult}
       } = await instance.post('/register',  {stdID: stdID, name: name});
       //console.log(message);
-      if(message === 'success'){
-        return(true);
-        
-      }
-      else{ 
-          return(false);
-        
-      }
+      return  await message;
 }
 
 const getUserData = async () => {
@@ -82,5 +71,5 @@ const updateUserData = async (id,stdID, name) => {
   }
 }
 
-export{ login, register,getUserData,deleteUserData,updateUserData };
+export{ login, register, getUserData, deleteUserData, updateUserData };
 
