@@ -27,24 +27,26 @@ exports.Register = async (req, res) => {
 }
 
 exports.CheckUsers = async (req, res) => {
-    
-    
 
     const registerResult = await Register.find();
-   
     res.status(200).send({message: 'success', registerResult: registerResult});
-    
-     
+
     // TODO : get answers from mongodb,
     // check answers coming from frontend and return score to frontend
 }
 
 exports.DeleteUsers = async (req, res) => {
-    
-    
+    await Register.remove({_id : req.body.source});
+    res.status(200).send({message: 'success', registerResult: "delete successfully"});
+     
+    // TODO : get answers from mongodb,
+    // check answers coming from frontend and return score to frontend
+}
 
-    await Register.remove({});
-    
+exports.UpdateUserData = async (req, res) => {
+    console.log(req.body.stdID)
+    await Register.update({_id : req.body.id},{ $set : { stdID : req.body.stdID , name : req.body.name }});
+    res.status(200).send({message: 'success', registerResult: "update successfully"});
      
     // TODO : get answers from mongodb,
     // check answers coming from frontend and return score to frontend

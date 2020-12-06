@@ -1,15 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import PropTypes from 'prop-types';
+import { getUserData,deleteUserData,updateUserData } from '../axios'
 
 
 
-let data = [{name:"張原",schoolnumber:"b08901049"},{name:"張原嘉",schoolnumber:"b08901049"},{name:"陳宥辰",schoolnumber:"b08901048"}];
+//let data = [{name:"張原",stdID:"b08901049"},{name:"張原嘉",stdID:"b08901049"},{name:"陳宥辰",stdID:"b08901048"}];
 
 function Management() {
+  const [data, setdata] = useState([]);
   const [display_data, setdisplay_data] = useState([""]);
   const [style, setstyle] = useState("");
   const [value, setvalue] = useState("");
 
+  //跟DB要資料
+  useEffect(() => {
+    let isUnmount = false;
+    if(!data.length&&!isUnmount){
+       getUserData().then(result=>setdata(result))
+    }
+    if(display_data[0]!==""){
+      handle_search(style,value)
+    }
+    return () => isUnmount = true;
+  },[data])
+
+  //處理查詢
   const handle_search = (style,value) => {
     let display_da = [];
     if(style===""){
@@ -35,14 +50,23 @@ function Management() {
     }
     setdisplay_data(display_da);
     }
-  const handle_revise_delete = (bt_name,revise_value,index) => {
+
+  //修改跟刪除
+  const handle_revise_delete = async (bt_name,revise_value,index) => {
     if(bt_name==="revise"){
-      data[index] = revise_value;
+      updateUserData(data[index]._id,revise_value.stdID,revise_value.name)
+      let list = [...data];
+      list[index] = revise_value;
+      setdata(list);
     }
     else if(bt_name==="delete"){
-      data.splice(index,1);
+      const msg = await deleteUserData(data[index]._id)
+      if (msg){
+        let list = [...data];
+        list.splice(index,1);
+        setdata(list);
+      }
     }
-    handle_search(style,value);
   };
   return (
     <>
@@ -92,7 +116,7 @@ function Search(props) {
 
   const handle_click = ()=>{
     if(text==="學號"){
-      onClick("schoolnumber",value)
+      onClick("stdID",value)
     }
     else if(text==="姓名"){
       onClick("name",value)
@@ -113,24 +137,24 @@ function Search(props) {
 function SearchData(props){
   const {onClick,obj } = props;
   const [name, setname] = useState("");
-  const [schoolnumber, setschoolnumber] = useState("");
+  const [stdID, setstdID] = useState("");
 
   const handle_click = (event)=>{
     if(event.target.name==="revise"){
-      if(name==="" && schoolnumber===""){
-        onClick(event.target.name,{name:obj.name,schoolnumber:obj.schoolnumber},obj.index);
+      if(name==="" && stdID===""){
+        onClick(event.target.name,{name:obj.name,stdID:obj.stdID},obj.index);
       }
       else if(name===""){
-        onClick(event.target.name,{name:obj.name,schoolnumber:schoolnumber},obj.index);
+        onClick(event.target.name,{name:obj.name,stdID:stdID},obj.index);
       }
-      else if(schoolnumber===""){
-        onClick(event.target.name,{name:name,schoolnumber:obj.schoolnumber},obj.index);
+      else if(stdID===""){
+        onClick(event.target.name,{name:name,stdID:obj.stdID},obj.index);
       }
       else{
-        onClick(event.target.name,{name:name,schoolnumber:schoolnumber},obj.index);
+        onClick(event.target.name,{name:name,stdID:stdID},obj.index);
       }
       setname("");
-      setschoolnumber("");
+      setstdID("");
     }
     else if(event.target.name==="delete"){
       onClick(event.target.name,"",obj.index);
@@ -140,9 +164,9 @@ function SearchData(props){
     <>
       <tr>
         <td>{obj.name}</td>
-        <td>{obj.schoolnumber}</td>
+        <td>{obj.stdID}</td>
         <td><input placeholder={obj.name}  value={name} onChange={(e)=>{setname(e.target.value)}}></input></td>
-        <td><input placeholder={obj.schoolnumber} value={schoolnumber} onChange={(e)=>{setschoolnumber(e.target.value)}}></input></td>
+        <td><input placeholder={obj.stdID} value={stdID} onChange={(e)=>{setstdID(e.target.value)}}></input></td>
         <td>
           <button onClick={handle_click} name="revise">修改</button>
           <button onClick={handle_click} name="delete">删除</button>

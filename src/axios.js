@@ -34,5 +34,53 @@ const register = async (stdID, name) => {
       }
 }
 
-export{ login, register };
+const getUserData = async () => {
+  const {
+    data: {message: message,
+    registerResult: registerResult}
+  }= await instance.get('/checkusers');
+  if(message === 'success'){
+    return(registerResult);
+  }
+  else{ 
+      return([""]);
+  }
+
+}
+
+const deleteUserData = async (id) => {
+  const {
+    data: {message: message,
+    registerResult: registerResult}
+  }=await instance.delete('/delete',{
+    headers: {
+      Authorization: ""
+    },
+    data: {
+      source: id
+    }
+  });
+  if(message === 'success'){
+    return(true);
+  }
+  else{ 
+      return(false);
+  }
+}
+
+const updateUserData = async (id,stdID, name) => {
+  const {
+    data: {message: message,
+    registerResult: registerResult}
+  }=await instance.post('/update',  {id:id,stdID: stdID, name: name});
+
+  if(message === 'success'){
+    return(true);
+  }
+  else{ 
+      return(false);
+  }
+}
+
+export{ login, register,getUserData,deleteUserData,updateUserData };
 
