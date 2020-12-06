@@ -29,7 +29,7 @@ function Registrants() {
       {!registerSuccess ?
           <React.Fragment>
          <form onSubmit={ handleSubmit }>
-         <h2>ManagerLogin</h2>
+         <h2>Registrants</h2>
          <div>
              {'學號：'}
              <input placeholder="Your stdID" name='stdID' value={stdID} onChange={handleStdIDChange}></input>
