@@ -117,6 +117,18 @@ function Search(props) {
   const { text,onClick } = props;
   const [value, setvalue] = useState("");
 
+  //處理合法的輸入
+  function validateForm() {
+    if(text==="學號"){
+      return value.length === 9;
+    }
+    else if(text==="姓名"){
+      return  value.length > 0;
+    }
+   
+  }
+
+
   const handle_click = ()=>{
     if(text==="學號"){
       onClick("stdID",value)
@@ -131,7 +143,7 @@ function Search(props) {
       <div>
         {text+"查詢 : "}
         <input type="text"  placeholder={"輸入"+text} value={value} onChange={(e)=>{setvalue(e.target.value)}}/>
-        <button onClick={handle_click}>查詢</button>
+        <button onClick={handle_click} disabled={!validateForm()}>查詢</button>
       </div>
     </>
   );
@@ -142,6 +154,15 @@ function SearchData(props){
   const [name, setname] = useState("");
   const [stdID, setstdID] = useState("");
 
+  //處理合法的輸入
+  function validateForm() {
+    if(name.length>0){
+      return stdID.length === 9 | stdID.length === 0;
+    }
+    else if(stdID.length === 9){
+      return  true ;
+    }
+  }
   const handle_click = (event)=>{
     if(event.target.name==="revise"){
       if(name==="" && stdID===""){
@@ -171,7 +192,7 @@ function SearchData(props){
         <td><input placeholder={obj.name}  value={name} onChange={(e)=>{setname(e.target.value)}}></input></td>
         <td><input placeholder={obj.stdID} value={stdID} onChange={(e)=>{setstdID(e.target.value)}}></input></td>
         <td>
-          <button onClick={handle_click} name="revise">修改</button>
+          <button onClick={handle_click} name="revise"disabled={!validateForm()}>修改</button>
           <button onClick={handle_click} name="delete">删除</button>
         </td>
       </tr>

@@ -36,7 +36,7 @@ exports.CheckUsers = async (req, res) => {
 }
 
 exports.DeleteUsers = async (req, res) => {
-    await Register.remove({_id : req.body.source});
+    await Register.deleteOne({_id : req.body.source});
     res.status(200).send({message: 'success', registerResult: "delete successfully"});
      
     // TODO : get answers from mongodb,
