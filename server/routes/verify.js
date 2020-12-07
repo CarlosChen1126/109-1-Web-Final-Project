@@ -47,7 +47,7 @@ exports.CheckVerifyCode = async (req, res) => {
     console.log(email);
     console.log(verifyCode);
     const isVerify = await Verify.find({email: email, verifyCode: verifyCode});
-    if(isVerify !== []){
+    if(!isVerify.length){
         res.status(200).send({message: '驗證成功'});
     }
     else{

@@ -5,8 +5,8 @@ exports.Login = async (req, res) => {
     //login.save();
     const account = req.body.account;
     const password = req.body.password;
-    const [loginResult] = await Login.find({account: account, password: password});
-    if(loginResult){
+    const loginResult = await Login.find({account: account, password: password});
+    if(loginResult.length){
         res.status(200).send({message: 'success'});
     }
     else{

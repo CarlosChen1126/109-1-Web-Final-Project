@@ -62,11 +62,7 @@
     "smtp": {
       "host": "smtp.gmail.com",
       "port": 465,
-      "secure": true,
-      "auth": {
-        "user": "ycchang0324@gmail.com",
-        "pass": "Edfred5112"
-      }
+      "secure": true
     }
   }
 }

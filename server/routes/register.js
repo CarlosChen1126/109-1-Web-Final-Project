@@ -15,32 +15,15 @@ exports.RegisterCheck = async (req, res) => {
     const emailCheck = await Register.find({email: email});
     console.log(stdIDCheck);
     console.log(emailCheck);
-    if(stdIDCheck === []){
+    if(stdIDCheck.length){
         res.status(200).send({message: '學號已註冊'});
     }
-    else if(emailCheck === []){
-        res.staus(200).send({message: '信箱已被註冊'})
+    else if(emailCheck.length){
+        res.status(200).send({message: '信箱已被註冊'})
     }else{
         res.status(200).send({message: 'success'});
     }
-    /*
-    const register = new Register({stdID: stdID, name: name, email: email});
-    
-    register.save(function (err) {
-        if (err) {
-            res.status(200).send({message: 'failed', error: err});
-            return handleError(err);
-        }
-        // saved!
-        else {
-            res.status(200).send({message: 'success', error: err});
-        }
-        
-    });
-*/
-    
-    // TODO : get answers from mongodb,
-    // check answers coming from frontend and return score to frontend
+   
 }
 
 exports.CheckUsers = async (req, res) => {
