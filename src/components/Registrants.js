@@ -1,26 +1,28 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { register } from '../axios'
+import { registerCheck } from '../axios';
+import  ValidateMail  from './ValidateMail';
 
 
 function Registrants() {
   const [registerSuccess, setRegisterSuccess] = useState(false)  // true if answered all questions
-  const [stdID, setStdID] = useState("")     // to store questions
-  const [name, setName] = useState("")               // to record your answers
+  const [stdID, setStdID] = useState("");     // to store questions
+  const [name, setName] = useState("");               // to record your answers
+  const [email, setEmail] = useState("");
   const [warning, setWarning] = useState("");
   const handleSubmit = async (event) => {
     event.preventDefault();
     const stdIDUpp = stdID.toUpperCase();
     setStdID(stdIDUpp);
-    const success = await register( stdID, name );
+    const success = await registerCheck( stdIDUpp, name, email );
     console.log(success);
-    (success === "success") ? setRegisterSuccess(true) : setWarning("帳號已註冊");
+    (success === "success") ? setRegisterSuccess(true) : setWarning(success);
     
     
   }
 
   function validateForm() {
-    return stdID.length === 9 && name.length > 0;
+    return stdID.length === 9 && name.length > 0 && email.length > 0;
   }
   
 
@@ -30,6 +32,9 @@ function Registrants() {
 
   const handleNameChange = (e) => {
     setName(e.target.value);
+  }
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
   }
  
   // TODO : fill in the rendering contents and logic
@@ -47,11 +52,15 @@ function Registrants() {
              {'姓名：'}
              <input type="text" placeholder="Your Name" name='name' value={name} onChange={handleNameChange}></input>
          </div>
+         <div>
+             {'信箱：'}
+             <input type="email" placeholder="Your Email" name='email' value={email} onChange={handleEmailChange}></input>
+         </div>
          <div>{warning}</div>
          <input type='submit' value='送出' disabled={!validateForm()}></input>
        </form>
        </React.Fragment>
-       : <React.Fragment>註冊成功</React.Fragment>
+       : <React.Fragment><ValidateMail email= {email} name={name} stdID={stdID}/></React.Fragment>
       }
     
    

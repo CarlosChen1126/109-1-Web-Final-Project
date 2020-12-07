@@ -13,13 +13,12 @@ const login = async (account, password) => {
       return await (message);
 }
 
-const register = async (stdID, name) => {
+const registerCheck = async (stdID, name, email) => {
     const {
         data: {
-        message: message,
-        registerResult: registerResult}
-      } = await instance.post('/register',  {stdID: stdID, name: name});
-      //console.log(message);
+        message: message}
+      } = await instance.post('/registerCheck',  {stdID: stdID, name: name, email: email});
+      console.log(message);
       return  await message;
 }
 
@@ -71,5 +70,35 @@ const updateUserData = async (id,stdID, name) => {
   }
 }
 
-export{ login, register, getUserData, deleteUserData, updateUserData };
+const generateCode = async (email) => {
+  console.log(email);
+  const {
+      data: {
+      message: message,
+      }
+    } = await instance.post('/generateCode',  {email: email});
+    //console.log(message);
+    return  await message;
+}
+
+const checkVerifyCode = async (email, verifyCode) => {
+  const {
+    data: {
+    message: message,
+    }
+  } = await instance.post('/checkVerifyCode',  {email: email, verifyCode: verifyCode});
+  console.log(message);
+  return await message;
+}
+
+const registerInDatabase = async(stdID, name, email) => {
+  const {
+    data: {
+    message: message}
+  } = await instance.post('/registerInDatabase',  {stdID: stdID, name: name, email: email});
+  console.log(message);
+  return await message;
+}
+export{ login, registerCheck, getUserData, deleteUserData, updateUserData, generateCode, checkVerifyCode
+ ,registerInDatabase };
 

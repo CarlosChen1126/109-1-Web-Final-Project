@@ -5,12 +5,18 @@ const RegisterSchema = Schema({
     stdID: {
 		type: String,
         required: [true, 'StdID field is required.'],
-        unique: true
+        index: {unique: true}
 	},
 	name: {
 		type: String,
         required: [true, 'Name field is required.']
-	}
+  },
+  email: {
+		type: String,
+        required: [true, 'Email field is required.'],
+        index: {unique: true}
+  }
+  
 }, {
   collection: 'Register',
   timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }
