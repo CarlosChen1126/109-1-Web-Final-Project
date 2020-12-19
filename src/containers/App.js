@@ -4,6 +4,7 @@ import Management from '../components/Management';
 import ManagerLogin from '../components/ManagerLogin';
 import Inquery from '../components/Inquery';
 import Login from '../components/Login';
+import Speech from '../components/Speech_input';
 import {
   BrowserRouter as Router,
   Switch,
@@ -26,6 +27,9 @@ function App() {
             <li>
               <Link to="/ManagerLogin">ManagerLogin</Link>
             </li>
+            <li>
+              <Link to="/Speech">Speech</Link>
+            </li>
           </ul>
         </nav>
 
@@ -35,10 +39,12 @@ function App() {
           <Route path='/ManagerLogin'>
             <ManagerLogin />
           </Route>
+          <Route path="/Speech">
+            <Speech/>
+          </Route>
           <Route path="/">
             <Registrants />
           </Route>
-
         </Switch>
       </div>
     </Router>
