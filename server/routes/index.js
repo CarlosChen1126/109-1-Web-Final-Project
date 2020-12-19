@@ -1,6 +1,7 @@
 const loginRoute = require('./login');
 const registerRoute = require('./register');
 const verifyRoute = require('./verify');
+const accessRoute = require('./access');
 const wrap = fn => (...args) => fn(...args).catch(args[2])
 
 function main(app) {
@@ -12,6 +13,8 @@ function main(app) {
   app.post('/api/generateCode', wrap(verifyRoute.GenerateCode));
   app.post('/api/checkVerifyCode', wrap(verifyRoute.CheckVerifyCode));
   app.post('/api/registerInDatabase', wrap(registerRoute.RegisterInDatabase));
+  app.get('/api/accesstime', wrap(accessRoute.getAccess));
+
 }
 
 module.exports = main;

@@ -1,7 +1,8 @@
 import React, { useState,useEffect } from 'react'
 import PropTypes from 'prop-types';
-import { getUserData,deleteUserData,updateUserData } from '../axios'
+import { getUserData,deleteUserData,updateUserData,getUserTime } from '../axios'
 import logout from './Logout'
+import { render } from 'react-dom';
 
 
 
@@ -9,6 +10,7 @@ import logout from './Logout'
 
 function Management() {
   const [data, setdata] = useState([]);
+
   const [display_data, setdisplay_data] = useState([""]);
   const [style, setstyle] = useState("");
   const [value, setvalue] = useState("");
@@ -16,6 +18,7 @@ function Management() {
   //跟DB要資料
   useEffect(() => {
     let isUnmount = false;
+ 
     if(!data.length&&!isUnmount){
        getUserData().then(result=>setdata(result))
     }
@@ -153,6 +156,7 @@ function SearchData(props){
   const {onClick,obj } = props;
   const [name, setname] = useState("");
   const [stdID, setstdID] = useState("");
+  const [time, settime] = useState([]);
 
   //處理合法的輸入
   function validateForm() {
@@ -184,6 +188,17 @@ function SearchData(props){
       onClick(event.target.name,"",obj.index);
     }
   }
+
+  const handle_time = async(event)=>{
+    //getUserTime(event.target.id).then(time=>settime(time))
+    const timetime=await getUserTime(event.target.id)
+    const array=timetime.split(',')
+    settime(array)
+    console.log(array)
+    console.log(typeof(timetime))
+    console.log({time})
+  }
+  
   return (
     <>
       <tr>
@@ -192,12 +207,21 @@ function SearchData(props){
         <td><input placeholder={obj.name}  value={name} onChange={(e)=>{setname(e.target.value)}}></input></td>
         <td><input placeholder={obj.stdID} value={stdID} onChange={(e)=>{setstdID(e.target.value)}}></input></td>
         <td>
+        
+          <button onClick={handle_time} id={obj.stdID} name="time">顯示時間</button>
           <button onClick={handle_click} name="revise"disabled={!validateForm()}>修改</button>
           <button onClick={handle_click} name="delete">删除</button>
         </td>
       </tr>
+      <tr>
+        <td>{obj.stdID}</td>
+      </tr>
+        {time.map((tt) =>
+          <div>{tt}</div>
+        )}        
     </>
   );
+
 }
 
 export default Management;
