@@ -26,13 +26,36 @@ const getUserData = async () => {
     data: {message: message,
     registerResult: registerResult}
   }= await instance.get('/checkusers');
+
+
+  
+    
   if(message === 'success'){
     return(registerResult);
+    
   }
   else{ 
       return([""]);
   }
 
+}
+const getUserTime=async(number)=>{
+  console.log('number',number)
+  const{
+    data:{
+      message:message,
+      time:time}
+    }=await instance.get('/accesstime',{params:{number}});
+    
+    if(message==='success'){
+      console.log('success')
+      return time;
+    }
+    else{
+      console.log('dead')
+
+      return ([""]);
+    }
 }
 
 const deleteUserData = async (id) => {
@@ -99,5 +122,5 @@ const registerInDatabase = async(stdID, name, email) => {
   return await message;
 }
 export{ login, registerCheck, getUserData, deleteUserData, updateUserData, generateCode, checkVerifyCode
- ,registerInDatabase };
+ ,registerInDatabase,getUserTime };
 
