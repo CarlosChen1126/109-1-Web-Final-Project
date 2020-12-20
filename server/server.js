@@ -8,7 +8,9 @@ require('dotenv').config()
 const app = express()
 
 // Body Parser Middleware
-app.use(express.static('https://acs-web-final-project.herokuapp.com/public'));
+const buildPath = path.join(__dirname, '..', 'build');
+app.use(express.static(buildPath));
+//app.use(express.static('https://acs-web-final-project.herokuapp.com/public'));
 app.use(cors());
 app.use(express.json());
 app.use(function(req, res, next) {
