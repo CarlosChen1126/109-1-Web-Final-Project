@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import { login } from '../axios'
 import { Redirect } from "react-router-dom";
+//import { Management } from "Management"; 
 
 function ManagerLogin() {
   const [loginSuccess, setloginSuccess] = useState(false)  
@@ -17,7 +18,7 @@ function ManagerLogin() {
     if (success === 'success') {
       setloginSuccess(true)
       localStorage.setItem("auth", true);
-      window.location = './Management';
+      //window.location = './Management';
     } else {
       setWarning("登入失敗")
       localStorage.setItem("auth", false);
@@ -37,9 +38,11 @@ function ManagerLogin() {
   }
  
   // TODO : fill in the rendering contents and logic
+  if(loginSuccess){
+  return  <Redirect to="/Management" />
+}else{
   return (
     <div id="form-container">
-      {!loginSuccess ?
           <React.Fragment>
          <form onSubmit={ handleSubmit }>
          <h2>ManagerLogin</h2>
@@ -54,13 +57,11 @@ function ManagerLogin() {
          <div>{warning}</div>
          <input type='submit' value='送出'></input>
        </form>
-       </React.Fragment>
-       : <React.Fragment><Redirect to="/Management" /></React.Fragment>
-      }
-    
-   
+       </React.Fragment>   
   </div>
   )
+}
+  
 }
 
 //export default Question
