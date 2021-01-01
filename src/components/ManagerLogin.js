@@ -1,7 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import PropTypes from 'prop-types';
 import { login } from '../axios'
 import { Redirect } from "react-router-dom";
+
+import './ManagerLogin.css'
+import { Button, Input, message, Tag } from 'antd'
 //import { Management } from "Management"; 
 
 function ManagerLogin() {
@@ -9,8 +12,10 @@ function ManagerLogin() {
   const [account, setAccount] = useState("")     
   const [password, setPassword] = useState("")               
   const [warning, setWarning] = useState("");
-  const handleSubmit = async (event) => {
-    event.preventDefault(); 
+  const passwordRef = useRef(null);
+  const enterRef = useRef(null);
+
+  const handleSubmit = async () => {
     
     const success = await login(account,password);
     console.log(success);
@@ -45,17 +50,32 @@ function ManagerLogin() {
     <div id="form-container">
           <React.Fragment>
          <form onSubmit={ handleSubmit }>
-         <h2>ManagerLogin</h2>
+         <h2 className="ManagerLogin-title">管理員登入</h2>
          <div>
              {'帳號：'}
-             <input placeholder="Your Account" name='account' value={account} onChange={handleAccountChange}></input>
+             <Input placeholder="Your Account" name='account' value={account} onChange={handleAccountChange}
+             onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                passwordRef.current.focus()
+              }
+            }}
+             ></Input>
          </div>
          <div>
              {'密碼：'}
-             <input type="password" placeholder="Your Password" name='password' value={password} onChange={handlePasswordChange}></input>
+             <Input  ref ={passwordRef} type="password" placeholder="Your Password" name='password' value={password} onChange={handlePasswordChange}
+                    onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      enterRef.current.click()
+                    }
+                  }}
+            
+             ></Input>
          </div>
          <div>{warning}</div>
-         <input type='submit' value='送出'></input>
+         <div className="button">
+         <Button ref ={enterRef} type="primary" onClick={() => handleSubmit()}>送出</Button>
+         </div>
        </form>
        </React.Fragment>   
   </div>
@@ -64,34 +84,6 @@ function ManagerLogin() {
   
 }
 
-//export default Question
-/*
 
-function ManagerLogin() {
-  const handleSubmit=()=>{
-    const {
-      data:{message, score}
-    } = await instance.post('',  {account : ans})
-  };
-  return (
-    <>
 
-    
-      <form onSubmit={ handleSubmit }>
-        <h2>ManagerLogin</h2>
-        <div>
-            {'帳號：'}
-            <input placeholder="Your Account" name='account'></input>
-        </div>
-        <div>
-            {'密碼：'}
-            <input placeholder="Your Password" name='password'></input>
-        </div>
-        <input type='submit' value='送出'></input>
-      </form>
-    </>
-    
-  );
-}
-*/
 export default ManagerLogin;
