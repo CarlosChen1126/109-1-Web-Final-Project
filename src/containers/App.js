@@ -6,7 +6,7 @@ import Inquery from '../components/Inquery';
 import Login from '../components/Login';
 import Speech from '../components/Speech_input';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
   Link
