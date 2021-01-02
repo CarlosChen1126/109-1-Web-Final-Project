@@ -2,7 +2,8 @@ import { Redirect } from "react-router-dom";
 
 function logout(){
     localStorage.setItem("auth", false);
-    window.location = "/ManagerLogin";
+    console.log('there');
+    return <Redirect to="/ManagerLogin" />
 }
 
 export default logout;
