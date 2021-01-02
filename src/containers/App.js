@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react'
 import Registrants from '../components/Registrants';
 import Management from '../components/Management';
 import ManagerLogin from '../components/ManagerLogin';
-import Inquery from '../components/Inquery';
-import Login from '../components/Login';
 import {
   HashRouter as Router,
   Switch,
@@ -21,10 +19,10 @@ function App() {
         <nav>
           <ul className="right">
             <li>
-              <Link to="/">Registrants</Link>
+              <Link to="/">使用者註冊</Link>
             </li>
             <li>
-              <Link to="/ManagerLogin">ManagerLogin</Link>
+              <Link to="/ManagerLogin">管理員登入</Link>
             </li>
           </ul>
         </nav>

@@ -4,7 +4,7 @@ import { login } from '../axios'
 import { Redirect } from "react-router-dom";
 
 import './ManagerLogin.css'
-import { Button, Input, message, Tag } from 'antd'
+import { Button, Input, Form} from 'antd'
 //import { Management } from "Management"; 
 
 function ManagerLogin() {
@@ -32,8 +32,6 @@ function ManagerLogin() {
     
 } 
     
-  
-
   const handleAccountChange = (e) => {
     setAccount(e.target.value);
   }
@@ -49,11 +47,11 @@ function ManagerLogin() {
   return (
     <div id="form-container">
           <React.Fragment>
-         <form onSubmit={ handleSubmit }>
+         <Form onSubmit={ handleSubmit }>
          <h2 className="ManagerLogin-title">管理員登入</h2>
          <div>
              {'帳號：'}
-             <Input placeholder="Your Account" name='account' value={account} onChange={handleAccountChange}
+             <Input placeholder="Your Account" name='account' value={account} style={{ marginBottom: 10 }} onChange={handleAccountChange}
              onKeyDown={(e) => {
               if (e.key === 'Enter') {
                 passwordRef.current.focus()
@@ -61,6 +59,7 @@ function ManagerLogin() {
             }}
              ></Input>
          </div>
+         
          <div>
              {'密碼：'}
              <Input  ref ={passwordRef} type="password" placeholder="Your Password" name='password' value={password} onChange={handlePasswordChange}
@@ -76,7 +75,7 @@ function ManagerLogin() {
          <div className="button">
          <Button ref ={enterRef} type="primary" onClick={() => handleSubmit()}>送出</Button>
          </div>
-       </form>
+       </Form>
        </React.Fragment>   
   </div>
   )
