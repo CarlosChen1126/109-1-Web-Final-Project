@@ -4,11 +4,10 @@ import ReactDOM from 'react-dom';
 import { MemoryRouter } from 'react-router'
 import './styles.css';
 import App from './containers/App';
-import Management from './components/Management';
-import Registrants from './components/Registrants';
+import Manage from './components/manage/Manage';
 import { Route, Redirect } from 'react-router-dom';
 
-import { BrowserRouter, Switch } from 'react-router-dom'
+import { HashRouter as Router, Switch } from 'react-router-dom'
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
     
@@ -28,13 +27,13 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     )
     }
   ReactDOM.render(
-    <BrowserRouter>
+    <Router>
       <Switch>
       <Route exact path="/" component={App} />
-      <PrivateRoute path="/Management" component={Management} />
+      <PrivateRoute path="/Manage" component={Manage} />
       <App/>
       </Switch>
-    </BrowserRouter>
+    </Router>
     ,
     document.getElementById('root')
   );

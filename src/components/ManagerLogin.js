@@ -42,7 +42,7 @@ function ManagerLogin() {
  
   // TODO : fill in the rendering contents and logic
   if(loginSuccess){
-  return  <Redirect to="/Management" />
+  return  <Redirect to="/Manage" />
 }else{
   return (
     <div id="form-container">

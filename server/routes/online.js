@@ -11,7 +11,7 @@ exports.getOnlinePeople = async (req, res) => {
     const onlinePeople = await Online.find({});
     console.log(onlinePeople.length);
     console.log(onlinePeople);
-    res.status(200).send({peopleNum: onlinePeople.length})
+    res.status(200).send({message: 'success', onlineResult: onlinePeople})
 }
 
 

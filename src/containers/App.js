@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import Registrants from '../components/Registrants';
-import Management from '../components/Management';
+import Management from '../components/manage/Management';
 import ManagerLogin from '../components/ManagerLogin';
 import Home from '../components/Home';
 import Administrators from '../components/Administrators';
-import { getPeopleNum } from '../axios';
+import { getPeople } from '../axios';
 import{
   HashRouter as Router,
   Switch,
@@ -20,8 +20,9 @@ function App() {
   
   useEffect ( async ()=>{
     localStorage.setItem('auth',false)
-    const peopleNum = await getPeopleNum();
-    setPeopleNum(peopleNum);
+    const peopleResult = await getPeople();
+    console.log(peopleResult.length);
+    setPeopleNum(peopleResult.length);
     
 },[])
 
