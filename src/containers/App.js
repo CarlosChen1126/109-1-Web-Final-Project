@@ -27,9 +27,6 @@ function App() {
             <li>
               <Link to="/ManagerLogin">ManagerLogin</Link>
             </li>
-            <li>
-              <Link to="/Speech">Speech</Link>
-            </li>
           </ul>
         </nav>
 
@@ -38,9 +35,6 @@ function App() {
         <Switch>
           <Route path='/ManagerLogin'>
             <ManagerLogin />
-          </Route>
-          <Route path="/Speech">
-            <Speech/>
           </Route>
           <Route path="/">
             <Registrants />
