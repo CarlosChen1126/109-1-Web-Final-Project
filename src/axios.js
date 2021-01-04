@@ -1,6 +1,6 @@
 import axios from 'axios';
-const API_ROOT = 'https://acs-web-final-project.herokuapp.com/api';
-//const API_ROOT = 'http://localhost:5000/api';
+//const API_ROOT = 'https://acs-web-final-project.herokuapp.com/api';
+const API_ROOT = 'http://localhost:5000/api';
 const instance = axios.create({
   baseURL: API_ROOT
 })
@@ -122,6 +122,16 @@ const registerInDatabase = async(stdID, name, email) => {
   console.log(message);
   return await message;
 }
+
+const getPeopleNum = async() => {
+  const {
+    data: {
+    peopleNum: peopleNum}
+  } = await instance.get('/getOnlinePeople',);
+  console.log(peopleNum);
+  return await peopleNum;
+
+}
 export{ login, registerCheck, getUserData, deleteUserData, updateUserData, generateCode, checkVerifyCode
- ,registerInDatabase,getUserTime };
+ ,registerInDatabase,getUserTime, getPeopleNum };
 

@@ -1,4 +1,4 @@
-const Access = require('../models/access');
+const Access = require('../models/online');
 //const uuid = require('uuid');
 
 const handleError = function(err) {
@@ -20,7 +20,7 @@ exports.getAccess = async (req, res) => {
     console.log(typeof(dtime))
     console.log(dtime.toString())
     // if(data.length!==0){
-        res.status(200).send({message:'success',time:dtime.toString()})
+        res.status(200).send({peopleNum: peopleNum})
     // }
     // else{
     //     res.status(403).send({message:'error', data:[]})

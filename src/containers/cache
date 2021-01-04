@@ -1,18 +1,12 @@
-
-<Router>
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-      <Menu mode="horizontal">
-        <Switch>
-        <Route path='/Management'>
-            <Management />
-          </Route>
-          <Route path='/ManagerLogin'>
-            <ManagerLogin />
-          </Route>
-          <Route path="/">
-            <Registrants />
-          </Route>
-        </Switch>
-      </Menu>
-    </Router>
+<Menu>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">使用者註冊</Link>
+            </li>
+            <li>
+              <Link to="/ManagerLogin">管理員登入</Link>
+            </li>
+          </ul>
+        </nav>
+        </Menu>

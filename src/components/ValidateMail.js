@@ -39,6 +39,7 @@ function ValidateMail(props) {
   function reGenerateCode(email){
     generateCode(email)
     codeRef.current.focus()
+    setWarning("已重新寄送驗證碼")
   }
   useEffect (()=>{
     generateCode(props.email);

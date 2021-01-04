@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { getUserData,deleteUserData,updateUserData,getUserTime } from '../axios'
 import { render } from 'react-dom';
 import { Redirect } from "react-router-dom";
-
+import './Management.css'
 
 
 //let data = [{name:"張原",stdID:"b08901049"},{name:"張原嘉",stdID:"b08901049"},{name:"陳宥辰",stdID:"b08901048"}];
@@ -85,7 +85,7 @@ function Management() {
   }
   else{
     return (
-      <>
+      <div className="manage-container">
         <h2>管理端管理頁面</h2>
         <Search text="學號" onClick={handle_search}/>
         <Search text="姓名" onClick={handle_search}/>
@@ -93,7 +93,7 @@ function Management() {
         <br/>
         <button onClick={logout}>登出</button>
         {display_data[0]==="" ? <div></div> : <Display display_data={display_data} onClick={handle_revise_delete}></Display>}
-      </>
+      </div>
     );
     }
   
