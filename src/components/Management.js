@@ -146,18 +146,23 @@ function Management() {
   
     const handle_click = ()=>{
       if(text==="學號"){
-        onClick("stdID",value)
+        onClick("stdID",value.toUpperCase())
       }
       else if(text==="姓名"){
         onClick("name",value)
       }
       setvalue("");
     }
+    const handleKeyPress = (event) => {
+      if(event.key === 'Enter'){
+        handle_click()
+      }
+    }
     return (
       <>
         <div>
           {text+"查詢 : "}
-          <input type="text"  placeholder={"輸入"+text} value={value} onChange={(e)=>{setvalue(e.target.value)}}/>
+          <input type="text"  placeholder={"輸入"+text} value={value} onChange={(e)=>{setvalue(e.target.value)}} onKeyPress={handleKeyPress}/>
           <button onClick={handle_click} disabled={!validateForm()}>查詢</button>
         </div>
       </>
@@ -185,19 +190,24 @@ function Management() {
           onClick(event.target.name,{name:obj.name,stdID:obj.stdID},obj.index);
         }
         else if(name===""){
-          onClick(event.target.name,{name:obj.name,stdID:stdID},obj.index);
+          onClick(event.target.name,{name:obj.name,stdID:stdID.toUpperCase()},obj.index);
         }
         else if(stdID===""){
           onClick(event.target.name,{name:name,stdID:obj.stdID},obj.index);
         }
         else{
-          onClick(event.target.name,{name:name,stdID:stdID},obj.index);
+          onClick(event.target.name,{name:name,stdID:stdID.toUpperCase()},obj.index);
         }
         setname("");
         setstdID("");
       }
-      else if(event.target.name==="delete"){
-        onClick(event.target.name,"",obj.index);
+      else{
+        onClick(event.target.name,{name:name,stdID:stdID.toUpperCase()},obj.index);
+      }
+    }
+    const handleKeyPress = (event) => {
+      if(event.key === 'Enter'){
+        handle_click(event)
       }
     }
   
@@ -216,8 +226,8 @@ function Management() {
         <tr>
           <td>{obj.name}</td>
           <td>{obj.stdID}</td>
-          <td><input placeholder={obj.name}  value={name} onChange={(e)=>{setname(e.target.value)}}></input></td>
-          <td><input placeholder={obj.stdID} value={stdID} onChange={(e)=>{setstdID(e.target.value)}}></input></td>
+          <td><input placeholder={obj.name}  value={name} onChange={(e)=>{setname(e.target.value)}} onKeyPress={handleKeyPress} name="revise"></input></td>
+          <td><input placeholder={obj.stdID} value={stdID} onChange={(e)=>{setstdID(e.target.value)}} onKeyPress={handleKeyPress} name="revise"></input></td>
           <td>
           
             <button onClick={handle_time} id={obj.stdID} name="time">顯示時間</button>
