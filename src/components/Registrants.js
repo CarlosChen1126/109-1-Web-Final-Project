@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { registerCheck } from '../axios';
 import  ValidateMail  from './ValidateMail';
@@ -43,7 +43,7 @@ function Registrants() {
       {!registerSuccess ?
           <React.Fragment>
          <form onSubmit={ handleSubmit }>
-         <h2>Registrants</h2>
+         <h2>使用者註冊</h2>
          <div>
              {'學號：'}
              <input placeholder="Your stdID" name='stdID' value={stdID} onChange={handleStdIDChange}></input>

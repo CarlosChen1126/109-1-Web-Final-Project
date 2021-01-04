@@ -1,8 +1,8 @@
 import React, { useState,useEffect } from 'react'
 import PropTypes from 'prop-types';
 import { getUserData,deleteUserData,updateUserData,getUserTime } from '../axios'
-import logout from './Logout'
 import { render } from 'react-dom';
+import { Redirect } from "react-router-dom";
 
 
 
@@ -14,6 +14,7 @@ function Management() {
   const [display_data, setdisplay_data] = useState([""]);
   const [style, setstyle] = useState("");
   const [value, setvalue] = useState("");
+  const [logoutValue, setLogout] = useState(false);
 
   //跟DB要資料
   useEffect(() => {
@@ -55,6 +56,12 @@ function Management() {
     setdisplay_data(display_da);
     }
 
+    const logout = () => {
+      localStorage.setItem("auth", false);
+      console.log('there');
+      setLogout(true);
+  }
+  
   //修改跟刪除
   const handle_revise_delete = async (bt_name,revise_value,index) => {
     if(bt_name==="revise"){
@@ -72,165 +79,172 @@ function Management() {
       }
     }
   };
-  return (
-    <>
-      <h2>管理端管理頁面</h2>
-      <Search text="學號" onClick={handle_search}/>
-      <Search text="姓名" onClick={handle_search}/>
-      <button onClick={handle_search}>顯示所有資料</button>
-      <br/>
-      <button onClick={logout}>登出</button>
-      {display_data[0]==="" ? <div></div> : <Display display_data={display_data} onClick={handle_revise_delete}></Display>}
-    </>
-  );
-  }
 
-function Display(props) {
-  const { display_data,onClick } = props;
-
-  if(display_data.length===0){
-    return <h4>查無資料QQ</h4>;
+  if(logoutValue){
+    return  <Redirect to="/ManagerLogin" />
   }
   else{
-    let dis = display_data.map((obj)=>{
-    return <SearchData obj={obj} key={obj.index} onClick={onClick}></SearchData>
-  });
-    return(
+    return (
       <>
-        <h4>查詢結果:</h4>
-        <table>
-          <thead>
-            <tr>
-              <th>姓名</th>
-              <th>學號</th>
-              <th>更新名字</th>
-              <th>更新學號</th>
-            </tr>
-          </thead>
-          <tbody>
-            {dis}
-          </tbody>
-        </table>
+        <h2>管理端管理頁面</h2>
+        <Search text="學號" onClick={handle_search}/>
+        <Search text="姓名" onClick={handle_search}/>
+        <button onClick={handle_search}>顯示所有資料</button>
+        <br/>
+        <button onClick={logout}>登出</button>
+        {display_data[0]==="" ? <div></div> : <Display display_data={display_data} onClick={handle_revise_delete}></Display>}
       </>
-    )
-  }
-}
-
-function Search(props) {
-  const { text,onClick } = props;
-  const [value, setvalue] = useState("");
-
-  //處理合法的輸入
-  function validateForm() {
-    if(text==="學號"){
-      return value.length === 9;
+    );
     }
-    else if(text==="姓名"){
-      return  value.length > 0;
+  
+  function Display(props) {
+    const { display_data,onClick } = props;
+  
+    if(display_data.length===0){
+      return <h4>查無資料QQ</h4>;
     }
-   
-  }
-
-
-  const handle_click = ()=>{
-    if(text==="學號"){
-      onClick("stdID",value.toUpperCase())
-    }
-    else if(text==="姓名"){
-      onClick("name",value)
-    }
-    setvalue("");
-  }
-  const handleKeyPress = (event)=>{
-    if(event.key === 'Enter'){
-      handle_click()
-    }
-  }
-  return (
-    <>
-      <div>
-        {text+"查詢 : "}
-        <input type="text"  placeholder={"輸入"+text} value={value} onChange={(e)=>{setvalue(e.target.value)}} onKeyPress={handleKeyPress}/>
-        <button onClick={handle_click} disabled={!validateForm()}>查詢</button>
-      </div>
-    </>
-  );
-}
-
-function SearchData(props){
-  const {onClick,obj } = props;
-  const [name, setname] = useState("");
-  const [stdID, setstdID] = useState("");
-  const [time, settime] = useState([]);
-
-  //處理合法的輸入
-  function validateForm() {
-    if(name.length>0){
-      return stdID.length === 9 | stdID.length === 0;
-    }
-    else if(stdID.length === 9){
-      return  true ;
+    else{
+      let dis = display_data.map((obj)=>{
+      return <SearchData obj={obj} key={obj.index} onClick={onClick}></SearchData>
+    });
+      return(
+        <>
+          <h4>查詢結果:</h4>
+          <table>
+            <thead>
+              <tr>
+                <th>姓名</th>
+                <th>學號</th>
+                <th>更新名字</th>
+                <th>更新學號</th>
+              </tr>
+            </thead>
+            <tbody>
+              {dis}
+            </tbody>
+          </table>
+        </>
+      )
     }
   }
-  const handle_click = (event)=>{
-    if(event.target.name==="revise"){
-      if(name==="" && stdID===""){
-        onClick(event.target.name,{name:obj.name,stdID:obj.stdID},obj.index);
+  
+  function Search(props) {
+    const { text,onClick } = props;
+    const [value, setvalue] = useState("");
+  
+    //處理合法的輸入
+    function validateForm() {
+      if(text==="學號"){
+        return value.length === 9;
       }
-      else if(name===""){
-        onClick(event.target.name,{name:obj.name,stdID:stdID.toUpperCase()},obj.index);
+      else if(text==="姓名"){
+        return  value.length > 0;
       }
-      else if(stdID===""){
-        onClick(event.target.name,{name:name,stdID:obj.stdID},obj.index);
+     
+    }
+  
+  
+    const handle_click = ()=>{
+      if(text==="學號"){
+        onClick("stdID",value.toUpperCase())
+      }
+      else if(text==="姓名"){
+        onClick("name",value)
+      }
+      setvalue("");
+    }
+    const handleKeyPress = (event) => {
+      if(event.key === 'Enter'){
+        handle_click()
+      }
+    }
+    return (
+      <>
+        <div>
+          {text+"查詢 : "}
+          <input type="text"  placeholder={"輸入"+text} value={value} onChange={(e)=>{setvalue(e.target.value)}} onKeyPress={handleKeyPress}/>
+          <button onClick={handle_click} disabled={!validateForm()}>查詢</button>
+        </div>
+      </>
+    );
+  }
+  
+  function SearchData(props){
+    const {onClick,obj } = props;
+    const [name, setname] = useState("");
+    const [stdID, setstdID] = useState("");
+    const [time, settime] = useState([]);
+  
+    //處理合法的輸入
+    function validateForm() {
+      if(name.length>0){
+        return stdID.length === 9 | stdID.length === 0;
+      }
+      else if(stdID.length === 9){
+        return  true ;
+      }
+    }
+    const handle_click = (event)=>{
+      if(event.target.name==="revise"){
+        if(name==="" && stdID===""){
+          onClick(event.target.name,{name:obj.name,stdID:obj.stdID},obj.index);
+        }
+        else if(name===""){
+          onClick(event.target.name,{name:obj.name,stdID:stdID.toUpperCase()},obj.index);
+        }
+        else if(stdID===""){
+          onClick(event.target.name,{name:name,stdID:obj.stdID},obj.index);
+        }
+        else{
+          onClick(event.target.name,{name:name,stdID:stdID.toUpperCase()},obj.index);
+        }
+        setname("");
+        setstdID("");
       }
       else{
         onClick(event.target.name,{name:name,stdID:stdID.toUpperCase()},obj.index);
       }
-      setname("");
-      setstdID("");
     }
-    else if(event.target.name==="delete"){
-      onClick(event.target.name,"",obj.index);
+    const handleKeyPress = (event) => {
+      if(event.key === 'Enter'){
+        handle_click(event)
+      }
     }
-  }
-  const handleKeyPress = (event)=>{
-    if(event.key === 'Enter'){
-      handle_click(event)
+  
+    const handle_time = async(event)=>{
+      //getUserTime(event.target.id).then(time=>settime(time))
+      const timetime=await getUserTime(event.target.id)
+      const array=timetime.split(',')
+      settime(array)
+      console.log(array)
+      console.log(typeof(timetime))
+      console.log({time})
     }
-  }
-
-  const handle_time = async(event)=>{
-    //getUserTime(event.target.id).then(time=>settime(time))
-    const timetime=await getUserTime(event.target.id)
-    const array=timetime.split(',')
-    settime(array)
-    console.log(array)
-    console.log(typeof(timetime))
-    console.log({time})
+    
+    return (
+      <>
+        <tr>
+          <td>{obj.name}</td>
+          <td>{obj.stdID}</td>
+          <td><input placeholder={obj.name}  value={name} onChange={(e)=>{setname(e.target.value)}} onKeyPress={handleKeyPress} name="revise"></input></td>
+          <td><input placeholder={obj.stdID} value={stdID} onChange={(e)=>{setstdID(e.target.value)}} onKeyPress={handleKeyPress} name="revise"></input></td>
+          <td>
+          
+            <button onClick={handle_time} id={obj.stdID} name="time">顯示時間</button>
+            <button onClick={handle_click} name="revise"disabled={!validateForm()}>修改</button>
+            <button onClick={handle_click} name="delete">删除</button>
+          </td>
+        </tr>
+        <tr>
+          <td>{obj.stdID}</td>
+        </tr>
+          {time.map((tt) =>
+            <div>{tt}</div>
+          )}        
+      </>
+    );
   }
   
-  return (
-    <>
-      <tr>
-        <td>{obj.name}</td>
-        <td>{obj.stdID}</td>
-        <td><input placeholder={obj.name}  value={name} onChange={(e)=>{setname(e.target.value)}} onKeyPress={handleKeyPress} name="revise"></input></td>
-        <td><input placeholder={obj.stdID} value={stdID} onChange={(e)=>{setstdID(e.target.value)}} onKeyPress={handleKeyPress} name="revise"></input></td>
-        <td>
-        
-          <button onClick={handle_time} id={obj.stdID} name="time">顯示時間</button>
-          <button onClick={handle_click} name="revise"disabled={!validateForm()}>修改</button>
-          <button onClick={handle_click} >name="delete"删除</button>
-        </td>
-      </tr>
-      <tr>
-        <td>{obj.stdID}</td>
-      </tr>
-        {time.map((tt) =>
-          <div>{tt}</div>
-        )}        
-    </>
-  );
 
 }
 

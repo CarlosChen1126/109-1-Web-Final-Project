@@ -1,0 +1,22 @@
+#form-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 500px;
+  margin: auto;
+
+}
+
+.ManagerLogin-title{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

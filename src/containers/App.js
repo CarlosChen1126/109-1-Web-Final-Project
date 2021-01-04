@@ -2,11 +2,8 @@ import React, { useState, useEffect } from 'react'
 import Registrants from '../components/Registrants';
 import Management from '../components/Management';
 import ManagerLogin from '../components/ManagerLogin';
-import Inquery from '../components/Inquery';
-import Login from '../components/Login';
-import Speech from '../components/Speech_input';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
   Link
@@ -22,10 +19,10 @@ function App() {
         <nav>
           <ul className="right">
             <li>
-              <Link to="/">Registrants</Link>
+              <Link to="/">使用者註冊</Link>
             </li>
             <li>
-              <Link to="/ManagerLogin">ManagerLogin</Link>
+              <Link to="/ManagerLogin">管理員登入</Link>
             </li>
           </ul>
         </nav>
@@ -33,6 +30,9 @@ function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
+        <Route path='/Management'>
+            <Management />
+          </Route>
           <Route path='/ManagerLogin'>
             <ManagerLogin />
           </Route>
