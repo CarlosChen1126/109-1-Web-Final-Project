@@ -3,6 +3,7 @@ import Registrants from '../components/Registrants';
 import Management from '../components/Management';
 import ManagerLogin from '../components/ManagerLogin';
 import Home from '../components/Home';
+import Administrators from '../components/Administrators';
 import { getPeopleNum } from '../axios';
 import{
   HashRouter as Router,
@@ -39,10 +40,13 @@ function App() {
               <Link to="/Registrants">使用者註冊</Link>
             </li>
             <li>
+              <Link to="/Administrators">管理員列表</Link>
+            </li>
+            <li>
               <Link to="/ManagerLogin">管理員登入</Link>
             </li>
             <li>
-              <span>在線人數 {people} 人</span>
+              <span>MKS 人數 {people} 人</span>
             </li>
           </ul>
         </nav>
@@ -58,6 +62,9 @@ function App() {
           </Route>
           <Route path="/Registrants">
             <Registrants />
+          </Route>
+          <Route path="/Administrators">
+            <Administrators />
           </Route>
           <Route path="/">
             <Home />
