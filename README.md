@@ -4,7 +4,7 @@
 
 用一两段话介绍这个项目以及它能做些什么。
 
-![](https://github.com/dbader/readme-template/raw/master/header.png)
+![](https://i.imgur.com/zloMVrT.jpg)
 
 ## Getting Started 使用指南
 
@@ -44,25 +44,13 @@ Give the example
 
 ## Contributing 個別貢獻
 
-Please read [CONTRIBUTING.md](#) for details on our code of conduct, and the process for submitting pull requests to us.
-
-清阅读 [CONTRIBUTING.md](#) 了解如何向这个项目贡献代码
-
-## Release History 版本历史
-
-* 0.2.1
-    * CHANGE: Update docs
-* 0.2.0
-    * CHANGE: Remove `README.md`
-* 0.1.0
-    * Work in progress
+* 王政邦
+    * 管理端管理頁面
+    * google api 語音輸入
+    * 刷卡進出的流程及語音撥放
 
 ## Authors 關於作者
 
 * **WangYan** - *Initial work* - [WangYan](https://wangyan.org)
 
 查看更多关于这个项目的贡献者，请阅读 [contributors](#) 
-
-## License 授权协议
-
-这个项目 MIT 协议， 请点击 [LICENSE.md](LICENSE.md) 了解更多细节。
