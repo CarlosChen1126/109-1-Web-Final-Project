@@ -20,7 +20,7 @@ exports.getAccess = async (req, res) => {
     console.log(typeof(dtime))
     console.log(dtime.toString())
     // if(data.length!==0){
-        res.status(200).send({peopleNum: peopleNum})
+        res.status(200).send({message:'success', time:dtime.toString()})
     // }
     // else{
     //     res.status(403).send({message:'error', data:[]})
