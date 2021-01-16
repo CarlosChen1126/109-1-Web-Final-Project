@@ -1,7 +1,5 @@
 import React, { useState,useEffect } from 'react'
-import PropTypes from 'prop-types';
 import { getUserData,deleteUserData,updateUserData,getUserTime } from '../../axios'
-import { render } from 'react-dom';
 import './Management.css'
 
 
@@ -18,7 +16,6 @@ function Management() {
   //跟DB要資料
   useEffect(() => {
     let isUnmount = false;
- 
     if(!data.length&&!isUnmount){
        getUserData().then(result=>setdata(result))
     }
@@ -74,7 +71,7 @@ function Management() {
     let display_da = [];
     if(style===""){
       //顯示所有資料
-      for (var i = 0; i < data.length; i++) {
+      for (let i = 0; i < data.length; i++) {
         let element = data[i];
         element.index = i;
         display_da.push(element);
@@ -83,7 +80,7 @@ function Management() {
       setvalue("");
     }
     else{
-      for (var i = 0; i < data.length; i++) {
+      for (let i = 0; i < data.length; i++) {
         if(data[i][style]===value){
           let element = data[i];
           element.index = i;
@@ -101,10 +98,21 @@ function Management() {
   //修改跟刪除
   const handle_revise_delete = async (bt_name,revise_value,index) => {
     if(bt_name==="revise"){
-      updateUserData(data[index]._id,revise_value.stdID,revise_value.name)
-      let list = [...data];
-      list[index] = revise_value;
-      setdata(list);
+      let repeatstd = false;
+      for(let i=0; i<data.length; i++){
+        if(revise_value.stdID===data[i].stdID){
+          repeatstd = true;
+        }
+      }
+      if(!repeatstd){
+        updateUserData(data[index]._id,revise_value.stdID,revise_value.name)
+        let list = [...data];
+        list[index] = {_id:data[index]._id,stdID: revise_value.stdID, name: revise_value.name};
+        setdata(list);
+      }
+      else{
+        alert("有重複的學號了!!")
+      }
     }
     else if(bt_name==="delete"){
       const msg = await deleteUserData(data[index]._id)
@@ -178,7 +186,7 @@ function Management() {
     const handle_click = (event)=>{
       if(event.target.name==="revise"){
         if(name==="" && stdID===""){
-          onClick(event.target.name,{name:obj.name,stdID:obj.stdID},obj.index);
+          //onClick(event.target.name,{name:obj.name,stdID:obj.stdID},obj.index);
         }
         else if(name===""){
           onClick(event.target.name,{name:obj.name,stdID:stdID.toUpperCase()},obj.index);
@@ -220,7 +228,6 @@ function Management() {
           <td><input placeholder={obj.name}  value={name} onChange={(e)=>{setname(e.target.value)}} onKeyPress={handleKeyPress} name="revise"></input></td>
           <td><input placeholder={obj.stdID} value={stdID} onChange={(e)=>{setstdID(e.target.value)}} onKeyPress={handleKeyPress} name="revise"></input></td>
           <td>
-          
             <button onClick={handle_time} id={obj.stdID} name="time">顯示時間</button>
             <button onClick={handle_click} name="revise"disabled={!validateForm()}>修改</button>
             <button onClick={handle_click} name="delete">删除</button>
