@@ -234,7 +234,6 @@ function Management() {
           </td>
         </tr>
         <tr>
-          <td>{obj.stdID}</td>
         </tr>
           {time.map((tt) =>
             <div>{tt}</div>

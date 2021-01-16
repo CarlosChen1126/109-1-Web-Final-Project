@@ -6,6 +6,7 @@ import Home from '../components/Home';
 import Administrators from '../components/Administrators';
 import ShowPeople from '../components/showPeople';
 import { getPeople } from '../axios';
+import './App.css';
 import{
   HashRouter as Router,
   Switch,
@@ -13,6 +14,7 @@ import{
   Link
 } from "react-router-dom";
 
+import doorIcon from '../assets/door-icon.png';
 
 function App() {
 
@@ -33,10 +35,14 @@ function App() {
     <>
     <Router>
       <div>
-        <nav>
-          <ul className="right">
+          <ul>
           <li>
-              <Link to="/">首頁</Link>
+              <Link to="/">
+                <div className="icon">
+                    <img className="icon-img" src={doorIcon}/>
+                    <div className="hover-hint">首頁</div>
+                </div>
+              </Link>
             </li>
             <li>
               <Link to="/Registrants">使用者註冊</Link>
@@ -47,11 +53,10 @@ function App() {
             <li>
               <Link to="/ManagerLogin">管理員登入</Link>
             </li>
-            <li>
+            <li style={{float:"right"}}>
             <Link to="/showPeople">mks 人數： {people}</Link>
             </li>
           </ul>
-        </nav>
         
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
