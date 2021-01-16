@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import PropTypes from 'prop-types';
 import { registerCheck } from '../axios';
 import  ValidateMail  from './ValidateMail';
@@ -10,6 +10,14 @@ function Registrants() {
   const [name, setName] = useState("");               // to record your answers
   const [email, setEmail] = useState("");
   const [warning, setWarning] = useState("");
+  const stdIDRef = useRef(null);
+  const nameRef = useRef(null);
+  const emailRef = useRef(null);
+  const enterRef = useRef(null);
+
+  useEffect (()=>{
+    stdIDRef.current.focus()
+},[])
   const handleSubmit = async (event) => {
     event.preventDefault();
     const stdIDUpp = stdID.toUpperCase();
@@ -46,18 +54,33 @@ function Registrants() {
          <h2>使用者註冊</h2>
          <div>
              {'學號：'}
-             <input placeholder="Your stdID" name='stdID' value={stdID} onChange={handleStdIDChange}></input>
+             <input ref={stdIDRef} placeholder="Your stdID" name='stdID' value={stdID} onChange={handleStdIDChange}
+             onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                nameRef.current.focus()
+              }
+            }}></input>
          </div>
          <div>
              {'姓名：'}
-             <input type="text" placeholder="Your Name" name='name' value={name} onChange={handleNameChange}></input>
+             <input ref={nameRef} type="text" placeholder="Your Name" name='name' value={name} onChange={handleNameChange}
+             onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                emailRef.current.focus()
+              }
+            }}></input>
          </div>
          <div>
              {'信箱：'}
-             <input type="email" placeholder="Your Email" name='email' value={email} onChange={handleEmailChange}></input>
+             <input ref={emailRef} type="email" placeholder="Your Email" name='email' value={email} onChange={handleEmailChange}
+             onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                enterRef.current.focus()
+              }
+            }}></input>
          </div>
          <div>{warning}</div>
-         <input type='submit' value='送出' disabled={!validateForm()}></input>
+         <input ref={enterRef} type='submit' value='送出' disabled={!validateForm()}></input>
        </form>
        </React.Fragment>
        : <React.Fragment><ValidateMail email= {email} name={name} stdID={stdID}/></React.Fragment>

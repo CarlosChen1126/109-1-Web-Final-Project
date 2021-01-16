@@ -4,6 +4,7 @@ import Management from '../components/manage/Management';
 import ManagerLogin from '../components/ManagerLogin';
 import Home from '../components/Home';
 import Administrators from '../components/Administrators';
+import ShowPeople from '../components/showPeople';
 import { getPeople } from '../axios';
 import{
   HashRouter as Router,
@@ -15,14 +16,14 @@ import{
 
 function App() {
 
-  const [people, setPeopleNum] = useState(0);
+  const [people, setPeopleNum] = useState('載入中');
   const [administrator,setAdministrator] = useState("");
   
   useEffect ( async ()=>{
     localStorage.setItem('auth',false)
     const peopleResult = await getPeople();
     console.log(peopleResult.length);
-    setPeopleNum(peopleResult.length);
+    setPeopleNum(peopleResult.length + ' 人');
     
 },[])
 
@@ -31,7 +32,7 @@ function App() {
   return  (
     <>
     <Router>
-      <div className="nav-wrapper">
+      <div>
         <nav>
           <ul className="right">
           <li>
@@ -47,7 +48,7 @@ function App() {
               <Link to="/ManagerLogin">管理員登入</Link>
             </li>
             <li>
-              <span>MKS 人數 {people} 人</span>
+            <Link to="/showPeople">mks 人數： {people}</Link>
             </li>
           </ul>
         </nav>
@@ -66,6 +67,9 @@ function App() {
           </Route>
           <Route path="/Administrators">
             <Administrators />
+          </Route>
+          <Route path="/showPeople">
+            <ShowPeople />
           </Route>
           <Route path="/">
             <Home />

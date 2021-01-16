@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { getPeople } from '../../axios'
 
 function Online() {
-    const [data, setData] =useState([]);
+    const [data, setData] = useState([]);
     useEffect(() => {
         let isUnmount = false;
      

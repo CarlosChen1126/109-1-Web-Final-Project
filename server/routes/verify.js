@@ -44,10 +44,10 @@ exports.CheckVerifyCode = async (req, res) => {
     };
     const email = req.body.email;
     const verifyCode = req.body.verifyCode;
-    console.log(email);
-    console.log(verifyCode);
+    console.log('email: ' + email);
+    console.log('verify code: ' + verifyCode);
     const isVerify = await Verify.find({email: email, verifyCode: verifyCode});
-    console.log(isVerify);
+    console.log('is verify: ' + isVerify);
     if(isVerify.length){
         res.status(200).send({message: '驗證成功'});
     }

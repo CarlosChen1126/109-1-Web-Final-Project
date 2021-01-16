@@ -1,17 +1,17 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import PropTypes from 'prop-types';
 import { login } from '../axios'
 import { Redirect } from "react-router-dom";
 
 import './ManagerLogin.css'
 import { Button, Input, Form} from 'antd'
-//import { Management } from "Management"; 
 
 function ManagerLogin() {
   const [loginSuccess, setloginSuccess] = useState(false)  
   const [account, setAccount] = useState("")     
   const [password, setPassword] = useState("")               
   const [warning, setWarning] = useState("");
+  const accountRef = useRef(null);
   const passwordRef = useRef(null);
   const enterRef = useRef(null);
 
@@ -19,6 +19,8 @@ function ManagerLogin() {
     
     const success = await login(account,password);
     console.log(success);
+
+    
 
     if (success === 'success') {
       setloginSuccess(true)
@@ -30,7 +32,10 @@ function ManagerLogin() {
     }
     
     
-} 
+  }
+  useEffect (()=>{
+    accountRef.current.focus()
+},[]) 
     
   const handleAccountChange = (e) => {
     setAccount(e.target.value);
@@ -51,7 +56,7 @@ function ManagerLogin() {
          <h2 className="ManagerLogin-title">管理員登入</h2>
          <div>
              {'帳號：'}
-             <Input placeholder="Your Account" name='account' value={account} style={{ marginBottom: 10 }} onChange={handleAccountChange}
+             <Input ref={accountRef} placeholder="Your Account" name='account' value={account} style={{ marginBottom: 10 }} onChange={handleAccountChange}
              onKeyDown={(e) => {
               if (e.key === 'Enter') {
                 passwordRef.current.focus()

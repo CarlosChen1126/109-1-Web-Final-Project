@@ -68,13 +68,13 @@ function Management() {
       </>
     );
   }
-  
+
   //處理查詢
   const handle_search = (style,value) => {
     let display_da = [];
-    if(style===""){
+    if(style === ""){
       //顯示所有資料
-      for (var i = 0; i < data.length; i++) {
+      for (let i = 0; i < data.length; i++) {
         let element = data[i];
         element.index = i;
         display_da.push(element);

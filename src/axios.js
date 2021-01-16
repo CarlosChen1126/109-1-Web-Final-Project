@@ -1,4 +1,5 @@
 import axios from 'axios';
+//import {verifyResult} from './components/ValidateMail.js'
 const API_ROOT = 'https://acs-web-final-project.herokuapp.com/api';
 //const API_ROOT = 'http://localhost:5000/api';
 const instance = axios.create({
