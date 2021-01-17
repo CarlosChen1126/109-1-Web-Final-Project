@@ -21,7 +21,7 @@ app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Credentials', 'true')
     next()
   })
-  
+
 const dboptions = {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -29,27 +29,27 @@ const dboptions = {
     useUnifiedTopology: true,
     poolSize: 10
   }
-  // TODO : connect mongodb here
-  
-  if (!process.env.MONGO_URL) {
-    console.error('Missing MONGO_URL!!!')
-    process.exit(1)
-  }
-  
-  mongoose.connect(process.env.MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+// TODO : connect mongodb here
+
+if (!process.env.MONGO_URL) {
+  console.error('Missing MONGO_URL!!!')
+  process.exit(1)
+}
+
+mongoose.connect(process.env.MONGO_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+
+const db = mongoose.connection
+
+db.on('error', (error) => {
+  console.error(error)
+})
+
+db.once('open', () => {
+  console.log('MongoDB connected!') 
   })
-  
-  const db = mongoose.connection
-  
-  db.on('error', (error) => {
-    console.error(error)
-  })
-  
-  db.once('open', () => {
-    console.log('MongoDB connected!') 
-    })
 
 routes(app);
 
