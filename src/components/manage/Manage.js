@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Management from './Management';
 import Online from './Online';
+import SetAdministrator from './SetAdministrator';
 import { Redirect } from "react-router-dom";
 import{
   HashRouter as Router,
@@ -12,6 +13,7 @@ import './Manage.css';
 import manageIcon from '../../assets/manage.png';
 import onlineIcon from '../../assets/online.png';
 import logoutIcon from '../../assets/logout.png';
+import administratorIcon from '../../assets/administrator.png';
 
 function Manage() {
     const [logoutValue, setLogout] = useState(false);
@@ -46,6 +48,14 @@ function Manage() {
                     </div>
                   </Link>
                 </li>
+                <li>
+                  <Link to="/Manage/SetAdministrator">
+                  <div className="icon">
+                        <img className="icon-img" alt="set administrator" src={administratorIcon}/>
+                        <div className="hover-hint">修改管理員</div>
+                    </div>
+                  </Link>
+                </li>
                 <li onClick={logout}>
                   <div className="icon">
                           <img className="icon-img" alt="logout" src={logoutIcon}/>
@@ -63,6 +73,9 @@ function Manage() {
                   </Route>
                   <Route path="/Manage/Online">
                     <Online />
+                  </Route>
+                  <Route path="/Manage/SetAdministrator">
+                    <SetAdministrator />
                   </Route>
                 </Switch>
               </div>

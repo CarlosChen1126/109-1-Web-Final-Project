@@ -1,6 +1,6 @@
 import axios from 'axios';
-const API_ROOT = 'https://acs-web-final-project.herokuapp.com/api';
-//const API_ROOT = 'http://localhost:5000/api';
+//const API_ROOT = 'https://acs-web-final-project.herokuapp.com/api';
+const API_ROOT = 'http://localhost:5000/api';
 const instance = axios.create({
   baseURL: API_ROOT
 })
@@ -133,6 +133,33 @@ const getPeople = async() => {
   }
 
 }
+const insertAdministrator = async (day,time, name) => {
+  const {
+    message: message, error: error
+  }=await instance.post('/insertAdministrator',  {day: day,time: time, name: name});
+
+  return(message);
+}
+
+const getAdministrator = async () => {
+  const {
+    data: {message: message,
+    adminResult: adminResult}
+  }= await instance.get('/getAdministrator');
+
+
+  
+    
+  if(message === 'success'){
+    return(adminResult);
+    
+  }
+  else{ 
+      return([""]);
+  }
+
+}
+
 export{ login, registerCheck, getUserData, deleteUserData, updateUserData, generateCode, checkVerifyCode
- ,registerInDatabase,getUserTime, getPeople };
+ ,registerInDatabase,getUserTime, getPeople, insertAdministrator, getAdministrator };
 

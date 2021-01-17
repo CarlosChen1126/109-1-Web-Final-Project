@@ -26,6 +26,10 @@ function ManagerLogin() {
     
     
   }
+
+  function validateForm() {
+    return account.length > 0 && password.length > 0;
+  }
   useEffect (()=>{
     accountRef.current.focus()
 },[]) 
@@ -69,7 +73,7 @@ function ManagerLogin() {
              ></input>
          </div>
          <div>{warning}</div> 
-         <input className="submit-button" ref ={enterRef} type="submit" value="登入"/>
+         <input className="submit-button" ref ={enterRef} type="submit" value="登入" disabled={!validateForm()}/>
        </form>
   </div>
   )
