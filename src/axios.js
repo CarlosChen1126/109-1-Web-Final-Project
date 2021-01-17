@@ -38,18 +38,22 @@ const getUserData = async () => {
   }
 
 }
-const getUserTime=async(number)=>{
+const getUserTime = async (number) => {
   const{
     data:{
       message:message,
       time:time}
-    }=await instance.get('/accesstime',{params:{number}});
+    } = await instance.get('/accesstime',{params:{number}});
+
     
     if(message==='success'){
+      console.log('success fuck')
       return time;
     }
-    else
+    else{
+      console.log('dead')
       return ([""]);
+    }
 }
 
 const deleteUserData = async (id) => {

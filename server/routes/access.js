@@ -1,14 +1,14 @@
-const Access = require('../models/online');
+const Access = require('../models/access');
+
+const handleError = function(err) {
+    console.error(err);
+    // handle your error
+};
 
 exports.getAccess = async (req, res) => {
-    const idd=req.query.number
-    const data =await Access.find({stdID:idd})
-    var dtime=[]
-    for(let i=0;i<data.length;i++){
-        dtime[i]=data[i].time
-    }
-    
-    res.status(200).send({message:'success', time:dtime.toString()})
+    console.log('getAccess')
+    const data =await Access.find({stdID:req.query.number})
+    res.status(200).send({message: 'success', time: data})
 }
 
 
