@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { generateCode, checkVerifyCode, registerInDatabase } from '../axios';
-import { Button } from 'antd';
 import { Redirect } from "react-router-dom";
+import './ValidateMail.css';
 
 
 function ValidateMail(props) {
@@ -59,10 +59,10 @@ function ValidateMail(props) {
   }
   else {
     return (
-      <div id="form-container">
+      <div>
           {!verifySuccess?
       <form onSubmit={ handleSubmit }>
-        <h2>我們已寄送驗證信至 {props.email}，請輸入六位數驗證碼</h2>
+        <h4>我們已寄送驗證信至 {props.email}<br/>請輸入六位數驗證碼</h4>
           <div>
               {'驗證碼：'}
               <input ref={verifyCodeRef} placeholder="varification code" name='text' value={varificationCode} onChange={handleVarificationCodeChange}
@@ -73,16 +73,16 @@ function ValidateMail(props) {
               }
             }></input>
           </div>
-          <input ref ={enterRef} type='submit' value='送出' disabled={!validateForm()}></input>
+          <input className="design-button" ref ={enterRef} type='submit' value='送出' disabled={!validateForm()}></input>
           <br/>
-          <Button  type="primary" onClick={() => {reGenerateCode(props.email)}}>重新寄送驗證碼</Button>
+          <button className="design-button" type="primary" onClick={() => {reGenerateCode(props.email)}}>重新寄送驗證碼</button>
           <div>{warning}</div>
           
           </form>
           
-          : <div>
+          : <div className="pass-page">
             <div>驗證通過{registerInDatabaseSuccess}</div>
-            <Button onClick={() => {backToHomePage()}}>回到首頁</Button>
+            <button className="design-button" onClick={() => {backToHomePage()}}>回到首頁</button>
             </div>
       }</div>
       

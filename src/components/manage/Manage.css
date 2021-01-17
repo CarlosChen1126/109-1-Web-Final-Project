@@ -41,7 +41,7 @@ li a:hover:not(.active) {
   display: inline-block;
 }
 
-.icon .hover-hint {
+li .hover-hint {
   visibility: hidden;
   width: 60px;
   background-color:#0abab5;
@@ -59,7 +59,7 @@ li a:hover:not(.active) {
   transition: opacity 1s;
 }
 
-.icon:hover .hover-hint {
+li:hover .hover-hint {
   visibility: visible;
   opacity: 1;
   font-size: 6px;

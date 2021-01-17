@@ -47,7 +47,7 @@ function ManagerLogin() {
          <form  onSubmit={handleSubmit}>
          <h4 className="ManagerLogin-title">管理員登入</h4>
          <div>
-             {'帳號：'}
+             {'帳號'}
              <input ref={accountRef} placeholder="Your Account" name='account' value={account} style={{ marginBottom: 10 }} onChange={handleAccountChange}
              onKeyDown={(e) => {
               if (e.key === 'Enter') {
@@ -58,7 +58,7 @@ function ManagerLogin() {
          </div>
          
          <div>
-             {'密碼：'}
+             {'密碼'}
              <input  ref ={passwordRef} type="password" placeholder="Your Password" name='password' value={password} onChange={handlePasswordChange}
                     onKeyDown={(e) => {
                     if (e.key === 'Enter') {
@@ -69,7 +69,7 @@ function ManagerLogin() {
              ></input>
          </div>
          <div>{warning}</div> 
-         <input className="submit-button" ref ={enterRef} type="submit" value="Login"/>
+         <input className="submit-button" ref ={enterRef} type="submit" value="登入"/>
        </form>
   </div>
   )

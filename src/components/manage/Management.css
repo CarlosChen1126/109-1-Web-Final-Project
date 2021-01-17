@@ -13,8 +13,13 @@
 button{
   border-radius: 10%;
   height: 40px;
-  width: 100px;
+  width: 80px;
   background-color:#0abab5;
   color: white;
   font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.button-search{
+  width:150px;
 }

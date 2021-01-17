@@ -51,7 +51,7 @@ function Registrants() {
          <form onSubmit={ handleSubmit }>
          <h4>使用者註冊</h4>
          <div>
-             {'學號：'}
+             {'學號'}
              <input ref={stdIDRef} placeholder="Your stdID" name='stdID' value={stdID} onChange={handleStdIDChange}
              onKeyDown={(e) => {
               if (e.key === 'Enter') {
@@ -60,7 +60,7 @@ function Registrants() {
             }}></input>
          </div>
          <div>
-             {'姓名：'}
+             {'姓名'}
              <input ref={nameRef} type="text" placeholder="Your Name" name='name' value={name} onChange={handleNameChange}
              onKeyDown={(e) => {
               if (e.key === 'Enter') {
@@ -69,7 +69,7 @@ function Registrants() {
             }}></input>
          </div>
          <div>
-             {'信箱：'}
+             {'信箱'}
              <input ref={emailRef} type="email" placeholder="Your Email" name='email' value={email} onChange={handleEmailChange}
              onKeyDown={(e) => {
               if (e.key === 'Enter') {

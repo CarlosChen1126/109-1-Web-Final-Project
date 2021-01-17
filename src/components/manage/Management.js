@@ -106,7 +106,7 @@ function Management() {
         <h4>管理端管理頁面</h4>
         <Search text="學號" onClick={handle_search}/>
         <Search text="姓名" onClick={handle_search}/>
-        <button onClick={handle_search}>顯示所有資料</button>
+        <button className="button-search" onClick={handle_search}>顯示所有資料</button>
         <br/>
         {display_data[0]==="" ? <div></div> : <Display display_data={display_data} onClick={handle_revise_delete}></Display>}
       </div>
@@ -143,7 +143,7 @@ function Search(props) {
   }
   return (
     <>
-      <div>
+      <div className="manage-container">
         {text+"查詢 : "}
         <input type="text"  placeholder={"輸入"+text} value={value} onChange={(e)=>{setvalue(e.target.value)}} onKeyPress={handleKeyPress}/>
         <button onClick={handle_click} disabled={!validateForm()}>查詢</button>
