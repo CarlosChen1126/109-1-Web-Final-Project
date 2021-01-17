@@ -1,7 +1,7 @@
 import axios from 'axios';
 //import {verifyResult} from './components/ValidateMail.js'
-const API_ROOT = 'https://acs-web-final-project.herokuapp.com/api';
-//const API_ROOT = 'http://localhost:5000/api';
+//const API_ROOT = 'https://acs-web-final-project.herokuapp.com/api';
+const API_ROOT = 'http://localhost:5000/api';
 const instance = axios.create({
   baseURL: API_ROOT
 })
@@ -42,20 +42,19 @@ const getUserData = async () => {
 
 }
 const getUserTime=async(number)=>{
-  console.log('number',number)
   const{
     data:{
       message:message,
       time:time}
-    }=await instance.get('/accesstime',{params:{number}});
+    } = await instance.get('/accesstime',{params:{number}});
+
     
     if(message==='success'){
-      console.log('success')
+      console.log('success fuck')
       return time;
     }
     else{
       console.log('dead')
-
       return ([""]);
     }
 }
