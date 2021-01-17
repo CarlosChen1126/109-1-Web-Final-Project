@@ -4,7 +4,7 @@ import Management from '../components/manage/Management';
 import ManagerLogin from '../components/ManagerLogin';
 import Home from '../components/Home';
 import Administrators from '../components/Administrators';
-import ShowPeople from '../components/showPeople';
+import ShowPeople from '../components/ShowPeople';
 import { getPeople } from '../axios';
 import './App.css'
 import{

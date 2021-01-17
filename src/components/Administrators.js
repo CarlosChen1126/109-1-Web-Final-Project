@@ -2,7 +2,7 @@ import React from 'react';
 
 
 
-function ManagerLogin() {
+function Administrator() {
   
   return (
   <div>
@@ -60,4 +60,4 @@ function ManagerLogin() {
 
 
 
-export default ManagerLogin;
+export default Administrator;
