@@ -17,3 +17,7 @@ form{
     margin: auto;
 }
 
+.submit-button:disabled{
+    cursor:not-allowed
+}
+

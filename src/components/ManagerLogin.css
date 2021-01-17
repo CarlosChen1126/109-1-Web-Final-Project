@@ -18,3 +18,7 @@ form{
   color: white;
   font-size: 20px;
 }
+
+.submit-button:disabled{
+  cursor:not-allowed
+}

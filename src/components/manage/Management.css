@@ -23,3 +23,7 @@ button{
 .button-search{
   width:150px;
 }
+
+button:disabled{
+  cursor:not-allowed 
+}
