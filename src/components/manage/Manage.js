@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Management from './Management';
 import Online from './Online';
-import {Button} from 'antd';
 import { Redirect } from "react-router-dom";
 import{
   HashRouter as Router,
@@ -9,14 +8,16 @@ import{
   Route,
   Link
 } from "react-router-dom";
-
+import './Manage.css';
+import manageIcon from '../../assets/manage.png';
+import onlineIcon from '../../assets/online.png';
+import logoutIcon from '../../assets/logout.png';
 
 function Manage() {
     const [logoutValue, setLogout] = useState(false);
 
     const logout = () => {
         localStorage.setItem("auth", false);
-        console.log('there');
         setLogout(true);
     }
 
@@ -27,23 +28,32 @@ function Manage() {
         return  (
             <>
             <Router>
-              <div className="nav-wrapper">
-                <nav>
-                  <ul className="right">
+              <div>    
+              <ul>
                   <li>
-                      <Link to="/Manage/">管理端管理頁面</Link>
-                    </li>
-                    <li>
-                      <Link to="/Manage/Online">在 mks 人員</Link>
-                    </li>
-                    <li>
-                      <Link onClick={logout}>登出</Link>
-                    </li>
-                    <li>
-                      <span>  </span>
-                    </li>
-                  </ul>
-                </nav>
+                  <Link to="/Manage/">
+                    <div className="icon">
+                        <img className="icon-img" alt="management" src={manageIcon}/>
+                        <div className="hover-hint">管理介面</div>
+                    </div>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/Manage/Online">
+                  <div className="icon">
+                        <img className="icon-img" alt="online people" src={onlineIcon}/>
+                        <div className="hover-hint">在線人員</div>
+                    </div>
+                  </Link>
+                </li>
+                <li style={{float:"right"}} onClick={logout}>
+                  <div className="icon">
+                          <img className="icon-img" alt="logout" src={logoutIcon}/>
+                          <div className="hover-hint">登出</div>
+                      </div>
+                  
+                </li>
+             </ul>
                 
                 {/* A <Switch> looks through its children <Route>s and
                     renders the first one that matches the current URL. */}

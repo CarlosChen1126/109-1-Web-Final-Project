@@ -1,5 +1,4 @@
 const Access = require('../models/access');
-//const uuid = require('uuid');
 
 const handleError = function(err) {
     console.error(err);

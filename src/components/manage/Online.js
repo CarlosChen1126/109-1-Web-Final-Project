@@ -14,26 +14,11 @@ function Online() {
         }
         return () => isUnmount = true;
       },[data])
-
-    const showData = () => {
-        console.log(data);
-    }
     
     const setDataJsx = (props) => {
-        /*
-        const dataBody = props.map((person)=>{
-           <tr>person.stdID</tr>
-          
-        })
-        console.log(props);
-        console.log(dataBody);
-        return(
-           <tbody> { dataBody }</tbody>
-        )
-        */
+        
         return props.map((person)=>{
             const {stdID, EntryTime, Purpose, _id } = person;
-            console.log(stdID);
             return(
                 <tr key={_id}>
                     <td>{stdID}</td>
@@ -49,7 +34,7 @@ function Online() {
     <table>
         <thead>
         <tr>
-            <th onClick={showData}>學號</th>
+            <th>學號</th>
             <th>進入時間</th>
             <th>進來原因</th>
         </tr>

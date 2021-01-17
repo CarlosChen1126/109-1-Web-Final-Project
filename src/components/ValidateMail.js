@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
 import { generateCode, checkVerifyCode, registerInDatabase } from '../axios';
 import { Button } from 'antd';
 import { Redirect } from "react-router-dom";
@@ -16,7 +15,6 @@ function ValidateMail(props) {
   const enterRef = useRef(null);
   const handleSubmit = async (event) => {
     event.preventDefault(); 
-    console.log('in handle submit')
     
     const success = await checkVerifyCode(props.email, varificationCode);
      
@@ -49,7 +47,6 @@ function ValidateMail(props) {
     setWarning("已重新寄送驗證碼")
   }
   function backToHomePage(){
-    console.log('in backToHamePage')
     setBackToHome(true);
     
   }

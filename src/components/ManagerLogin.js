@@ -1,10 +1,8 @@
 import React, {useState, useEffect, useRef} from 'react';
-import PropTypes from 'prop-types';
 import { login } from '../axios'
 import { Redirect } from "react-router-dom";
 
 import './ManagerLogin.css'
-import { Button, Input, Form} from 'antd'
 
 function ManagerLogin() {
   const [loginSuccess, setloginSuccess] = useState(false)  
@@ -18,14 +16,12 @@ function ManagerLogin() {
   const handleSubmit = async () => {
     
     const success = await login(account,password);
-    console.log(success);
 
     
 
     if (success === 'success') {
       setloginSuccess(true)
       localStorage.setItem("auth", true);
-      //window.location = './Management';
     } else {
       setWarning("登入失敗")
       localStorage.setItem("auth", false);
@@ -50,37 +46,37 @@ function ManagerLogin() {
   return  <Redirect to="/Manage" />
 }else{
   return (
-    <div id="form-container">
+    <div>
           <React.Fragment>
-         <Form onSubmit={ handleSubmit }>
-         <h2 className="ManagerLogin-title">管理員登入</h2>
+         <form onSubmit={ handleSubmit }>
+         <h4 className="ManagerLogin-title">管理員登入</h4>
          <div>
              {'帳號：'}
-             <Input ref={accountRef} placeholder="Your Account" name='account' value={account} style={{ marginBottom: 10 }} onChange={handleAccountChange}
+             <input ref={accountRef} placeholder="Your Account" name='account' value={account} style={{ marginBottom: 10 }} onChange={handleAccountChange}
              onKeyDown={(e) => {
               if (e.key === 'Enter') {
                 passwordRef.current.focus()
               }
             }}
-             ></Input>
+             ></input>
          </div>
          
          <div>
              {'密碼：'}
-             <Input  ref ={passwordRef} type="password" placeholder="Your Password" name='password' value={password} onChange={handlePasswordChange}
+             <input  ref ={passwordRef} type="password" placeholder="Your Password" name='password' value={password} onChange={handlePasswordChange}
                     onKeyDown={(e) => {
                     if (e.key === 'Enter') {
                       enterRef.current.click()
                     }
                   }}
             
-             ></Input>
+             ></input>
          </div>
          <div>{warning}</div>
          <div className="button">
-         <Button ref ={enterRef} type="primary" onClick={() => handleSubmit()}>送出</Button>
+         <button ref ={enterRef} type="primary" onClick={() => handleSubmit()}>送出</button>
          </div>
-       </Form>
+       </form>
        </React.Fragment>   
   </div>
   )

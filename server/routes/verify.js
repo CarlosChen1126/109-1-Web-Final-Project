@@ -1,5 +1,5 @@
 const Verify = require('../models/verify');
-import { sendMail } from '../testEmail';
+import { sendMail } from '../verifyCodeEmail';
 
 exports.GenerateCode = async (req, res) => {
 
@@ -10,8 +10,7 @@ exports.GenerateCode = async (req, res) => {
     };
     const email = req.body.email;
     const verifyCode = Math.round(Math.random()* 900000 + 100000);
-    console.log(email);
-    console.log(verifyCode);
+
 
     Verify.deleteMany({ email: email }).then(function(){ 
         console.log("Data deleted"); // Success 
