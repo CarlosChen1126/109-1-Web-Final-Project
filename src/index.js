@@ -1,8 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-import { MemoryRouter } from 'react-router'
-import './styles.css';
 import App from './containers/App';
 import Manage from './components/manage/Manage';
 import { Route, Redirect } from 'react-router-dom';
@@ -15,7 +12,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
       <Route {...rest} render={(props) => {
   
         let auth = localStorage.getItem('auth')
-        console.log(auth);
         if(auth === "true"){
           return <Component {...props} />
           

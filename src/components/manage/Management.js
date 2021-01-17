@@ -125,7 +125,7 @@ function Management() {
   };
     return (
       <div className="manage-container">
-        <h2>管理端管理頁面</h2>
+        <h4>管理端管理頁面</h4>
         <Search text="學號" onClick={handle_search}/>
         <Search text="姓名" onClick={handle_search}/>
         <button onClick={handle_search}>顯示所有資料</button>
@@ -215,9 +215,6 @@ function Management() {
       const timetime=await getUserTime(event.target.id)
       const array=timetime.split(',')
       settime(array)
-      console.log(array)
-      console.log(typeof(timetime))
-      console.log({time})
     }
     
     return (

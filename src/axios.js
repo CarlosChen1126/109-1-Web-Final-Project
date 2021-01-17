@@ -1,5 +1,4 @@
 import axios from 'axios';
-//import {verifyResult} from './components/ValidateMail.js'
 const API_ROOT = 'https://acs-web-final-project.herokuapp.com/api';
 //const API_ROOT = 'http://localhost:5000/api';
 const instance = axios.create({
@@ -10,7 +9,6 @@ const login = async (account, password) => {
     const {
         data: {message}
       } = await instance.post('/login',  {account: account, password: password});
-      //console.log(message);
       return await (message);
 }
 
@@ -19,7 +17,6 @@ const registerCheck = async (stdID, name, email) => {
         data: {
         message: message}
       } = await instance.post('/registerCheck',  {stdID: stdID, name: name, email: email});
-      console.log(message);
       return  await message;
 }
 
@@ -42,7 +39,6 @@ const getUserData = async () => {
 
 }
 const getUserTime=async(number)=>{
-  console.log('number',number)
   const{
     data:{
       message:message,
@@ -50,14 +46,10 @@ const getUserTime=async(number)=>{
     }=await instance.get('/accesstime',{params:{number}});
     
     if(message==='success'){
-      console.log('success')
       return time;
     }
-    else{
-      console.log('dead')
-
+    else
       return ([""]);
-    }
 }
 
 const deleteUserData = async (id) => {
@@ -95,13 +87,11 @@ const updateUserData = async (id,stdID, name) => {
 }
 
 const generateCode = async (email) => {
-  console.log(email);
   const {
       data: {
       message: message,
       }
     } = await instance.post('/generateCode',  {email: email});
-    //console.log(message);
     return  await message;
 }
 
@@ -111,7 +101,6 @@ const checkVerifyCode = async (email, verifyCode) => {
     message: message,
     }
   } = await instance.post('/checkVerifyCode',  {email: email, verifyCode: verifyCode});
-  console.log(message);
   return await message;
 }
 
@@ -120,7 +109,6 @@ const registerInDatabase = async(stdID, name, email) => {
     data: {
     message: message}
   } = await instance.post('/registerInDatabase',  {stdID: stdID, name: name, email: email});
-  console.log(message);
   return await message;
 }
 
@@ -130,8 +118,6 @@ const getPeople = async() => {
     data: {message: message,
     onlineResult: onlineResult}
   }= await instance.get('/getOnlinePeople');
-
-  console.log(onlineResult);
   
     
   if(message === 'success'){

@@ -1,9 +1,5 @@
-import React, {useState, useRef} from 'react';
-import PropTypes from 'prop-types';
-import { login } from '../axios'
-import { Redirect } from "react-router-dom";
+import React from 'react';
 
-import { Button, Input, Form } from 'antd'
 
 
 function ManagerLogin() {
@@ -47,7 +43,7 @@ function ManagerLogin() {
             <td><b>休息</b></td>
         </tr>
         <tr>
-            <td colspan="2">晚上(18:30~21:20)</td>
+            <td colSpan="2">晚上(18:30~21:20)</td>
             <td>徐子程<br/>楊學翰</td>
             <td>勞志毅<br/>邱吉鈞</td>
             <td>徐子程<br/>徐有齊</td>

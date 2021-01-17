@@ -1,8 +1,7 @@
 import React, { useState, useEffect,useRef } from 'react';
-import PropTypes from 'prop-types';
 import { registerCheck } from '../axios';
 import  ValidateMail  from './ValidateMail';
-
+import './Registrants.css';
 
 function Registrants() {
   const [registerSuccess, setRegisterSuccess] = useState(false)  // true if answered all questions
@@ -23,7 +22,6 @@ function Registrants() {
     const stdIDUpp = stdID.toUpperCase();
     setStdID(stdIDUpp);
     const success = await registerCheck( stdIDUpp, name, email );
-    console.log(success);
     (success === "success") ? setRegisterSuccess(true) : setWarning(success);
     
     
@@ -47,11 +45,11 @@ function Registrants() {
  
   // TODO : fill in the rendering contents and logic
   return (
-    <div id="form-container">
+    <div >
       {!registerSuccess ?
           <React.Fragment>
          <form onSubmit={ handleSubmit }>
-         <h2>使用者註冊</h2>
+         <h4>使用者註冊</h4>
          <div>
              {'學號：'}
              <input ref={stdIDRef} placeholder="Your stdID" name='stdID' value={stdID} onChange={handleStdIDChange}

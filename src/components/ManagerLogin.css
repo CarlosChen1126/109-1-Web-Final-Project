@@ -1,22 +1,19 @@
-#form-container{
+form{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 80vh;
   width: 500px;
   margin: auto;
 
 }
 
-.ManagerLogin-title{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-}
-.button{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+button{
+  border-radius: 10%;
+  height: 40px;
+  width: 100px;
+  background-color:#0abab5;
+  color: white;
+  font-size: 20px;
 }

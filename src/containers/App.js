@@ -6,7 +6,7 @@ import Home from '../components/Home';
 import Administrators from '../components/Administrators';
 import ShowPeople from '../components/showPeople';
 import { getPeople } from '../axios';
-import './App.css';
+import './App.css'
 import{
   HashRouter as Router,
   Switch,
@@ -14,18 +14,24 @@ import{
   Link
 } from "react-router-dom";
 
-import doorIcon from '../assets/door-icon.png';
+import homeIcon from '../assets/home.png';
+import registerIcon from '../assets/register.png';
+import timeIcon from '../assets/time.png';
+import loginIcon from '../assets/login.png';
 
 function App() {
 
   const [people, setPeopleNum] = useState('載入中');
-  const [administrator,setAdministrator] = useState("");
+  //const [administrator,setAdministrator] = useState("");
   
-  useEffect ( async ()=>{
+  useEffect (()=>{
     localStorage.setItem('auth',false)
-    const peopleResult = await getPeople();
-    console.log(peopleResult.length);
-    setPeopleNum(peopleResult.length + ' 人');
+    const fetchPeopleNum = async () => {
+      const peopleResult = await getPeople();
+      setPeopleNum(peopleResult.length + ' 人');
+    }
+    
+    fetchPeopleNum();
     
 },[])
 
@@ -39,22 +45,39 @@ function App() {
           <li>
               <Link to="/">
                 <div className="icon">
-                    <img className="icon-img" src={doorIcon}/>
+                    <img className="icon-img" alt="home" src={homeIcon}/>
                     <div className="hover-hint">首頁</div>
                 </div>
               </Link>
             </li>
             <li>
-              <Link to="/Registrants">使用者註冊</Link>
+              <Link to="/Registrants">
+              <div className="icon">
+                    <img className="icon-img" alt="register" src={registerIcon}/>
+                    <div className="hover-hint">使用者註冊</div>
+                </div>
+              </Link>
             </li>
             <li>
-              <Link to="/Administrators">管理員列表</Link>
+              <Link to="/Administrators">
+              <div className="icon">
+                    <img className="icon-img" alt="administrators" src={timeIcon}/>
+                    <div className="hover-hint">管理員列表</div>
+                </div>
+                </Link>
             </li>
             <li>
-              <Link to="/ManagerLogin">管理員登入</Link>
+              <Link to="/ManagerLogin">
+              <div className="icon">
+                    <img className="icon-img" alt="manager login" src={loginIcon}/>
+                    <div className="hover-hint">管理員登入</div>
+                </div>
+                </Link>
             </li>
-            <li style={{float:"right"}}>
-            <Link to="/showPeople">mks 人數： {people}</Link>
+            <li>
+              <Link to="/showPeople">
+                mks 人數： {people}
+              </Link>
             </li>
           </ul>
         
