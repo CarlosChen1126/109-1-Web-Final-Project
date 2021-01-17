@@ -1,6 +1,6 @@
 import React from 'react';
 import './ShowPeople.css'
-function showPeople(){
+function ShowPeople(){
     return(
         <div className="note">
             若要查看詳細在線人員<br/>請登入管理端系統
@@ -8,4 +8,4 @@ function showPeople(){
     )
 };
 
-export default showPeople;
+export default ShowPeople;

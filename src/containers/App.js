@@ -75,7 +75,7 @@ function App() {
                 </Link>
             </li>
             <li>
-              <Link to="/showPeople">
+              <Link to="/ShowPeople">
                 mks 人數： {people}
               </Link>
             </li>
@@ -96,7 +96,7 @@ function App() {
           <Route path="/Administrators">
             <Administrators />
           </Route>
-          <Route path="/showPeople">
+          <Route path="/ShowPeople">
             <ShowPeople />
           </Route>
           <Route path="/">
