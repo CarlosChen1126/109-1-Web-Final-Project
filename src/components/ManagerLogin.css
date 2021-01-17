@@ -6,10 +6,11 @@ form{
   height: 80vh;
   width: 500px;
   margin: auto;
+  color: black;
 
 }
 
-button{
+.submit-button{
   border-radius: 10%;
   height: 40px;
   width: 100px;

@@ -13,12 +13,9 @@ function ManagerLogin() {
   const passwordRef = useRef(null);
   const enterRef = useRef(null);
 
-  const handleSubmit = async () => {
-    
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const success = await login(account,password);
-
-    
-
     if (success === 'success') {
       setloginSuccess(true)
       localStorage.setItem("auth", true);
@@ -47,8 +44,7 @@ function ManagerLogin() {
 }else{
   return (
     <div>
-          <React.Fragment>
-         <form onSubmit={ handleSubmit }>
+         <form  onSubmit={handleSubmit}>
          <h4 className="ManagerLogin-title">管理員登入</h4>
          <div>
              {'帳號：'}
@@ -72,12 +68,9 @@ function ManagerLogin() {
             
              ></input>
          </div>
-         <div>{warning}</div>
-         <div className="button">
-         <button ref ={enterRef} type="primary" onClick={() => handleSubmit()}>送出</button>
-         </div>
+         <div>{warning}</div> 
+         <input className="submit-button" ref ={enterRef} type="submit" value="Login"/>
        </form>
-       </React.Fragment>   
   </div>
   )
 }

@@ -78,7 +78,7 @@ function Registrants() {
             }}></input>
          </div>
          <div>{warning}</div>
-         <input ref={enterRef} type='submit' value='送出' disabled={!validateForm()}></input>
+         <input className="submit-button" ref={enterRef} type='submit' value='送出' disabled={!validateForm()}></input>
        </form>
        </React.Fragment>
        : <React.Fragment><ValidateMail email= {email} name={name} stdID={stdID}/></React.Fragment>

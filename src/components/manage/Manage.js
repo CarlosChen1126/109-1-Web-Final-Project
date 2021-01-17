@@ -46,7 +46,7 @@ function Manage() {
                     </div>
                   </Link>
                 </li>
-                <li style={{float:"right"}} onClick={logout}>
+                <li onClick={logout}>
                   <div className="icon">
                           <img className="icon-img" alt="logout" src={logoutIcon}/>
                           <div className="hover-hint">登出</div>
