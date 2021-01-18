@@ -91,12 +91,16 @@ const updateUserData = async (id,stdID, name) => {
 }
 
 const generateCode = async (email) => {
+
   const {
       data: {
       message: message,
+      err: err
       }
     } = await instance.post('/generateCode',  {email: email});
-    return  await message;
+    
+
+    return await message;
 }
 
 const checkVerifyCode = async (email, verifyCode) => {

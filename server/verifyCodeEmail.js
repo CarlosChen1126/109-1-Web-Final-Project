@@ -37,8 +37,10 @@ async function sendMail(email, verifyCode) {
       transporter.sendMail(mailOptions, function(error, info){
         if (error) {
           console.log(error);
+          return '寄信失敗';
         } else {
           console.log('Email sent: ' + info.response);
+          return '寄信成功';
         }
       });
       

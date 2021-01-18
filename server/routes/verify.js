@@ -21,13 +21,19 @@ exports.GenerateCode = async (req, res) => {
     
     verify.save(function (err) {
         if (err) {
-            res.status(500).send({message: '重新產生失敗', error: err});
+            res.status(200).send({message: '產生驗證碼失敗', error: err});
             return handleError(err);
         }
         // saved!
         else {
-            res.status(200).send({message: '重新產生成功', error: err});
-            sendMail(email, verifyCode);
+            const sendMailResult = sendMail(email, verifyCode);
+            if(sendMailResult === '寄信失敗'){
+                res.status(200).send({message: '寄送驗證信失敗', error: err});
+            }else if(sendMailResult === '寄信成功'){
+                res.status(200).send({message: '寄送驗證信成功', error: err});
+            }
+            
+            
         }
         
     });
