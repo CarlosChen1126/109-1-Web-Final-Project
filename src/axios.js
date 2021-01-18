@@ -103,9 +103,10 @@ const checkVerifyCode = async (email, verifyCode) => {
   const {
     data: {
     message: message,
+    success: success
     }
   } = await instance.post('/checkVerifyCode',  {email: email, verifyCode: verifyCode});
-  return await message;
+  return await {message:message, success: success};
 }
 
 const registerInDatabase = async(stdID, name, email) => {

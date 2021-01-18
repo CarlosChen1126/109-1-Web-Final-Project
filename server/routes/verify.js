@@ -21,12 +21,12 @@ exports.GenerateCode = async (req, res) => {
     
     verify.save(function (err) {
         if (err) {
-            res.status(200).send({message: 'failed', error: err});
+            res.status(500).send({message: '重新產生失敗', error: err});
             return handleError(err);
         }
         // saved!
         else {
-            res.status(200).send({message: 'success', error: err});
+            res.status(200).send({message: '重新產生成功', error: err});
             sendMail(email, verifyCode);
         }
         
@@ -43,15 +43,40 @@ exports.CheckVerifyCode = async (req, res) => {
     };
     const email = req.body.email;
     const verifyCode = req.body.verifyCode;
-    console.log('email: ' + email);
-    console.log('verify code: ' + verifyCode);
-    const isVerify = await Verify.find({email: email, verifyCode: verifyCode});
-    console.log('is verify: ' + isVerify);
-    if(isVerify.length){
-        res.status(200).send({message: '驗證成功'});
-    }
-    else{
-        res.status(200).send({message: '驗證失敗'});
-    }
+ 
+
+    const isVerify = Verify.findOne({email: email, verifyCode: verifyCode});
+
+    console.log(isVerify);
+    isVerify.exec(function (err, verifyResult) {
+        if (err) {
+            console.log('err');
+            res.status(500).send({message: '尚未驗證', success: '驗證失敗'});
+
+        }
+        if(verifyResult){
+            console.log(verifyResult.length);
+            res.status(200).send({message: '已驗證',success: '驗證成功'});
+        }
+        else{
+            console.log(verifyResult);
+            console.log('failed');
+            res.status(200).send({message: '已驗證', success: '驗證失敗'});
+        
+      }});
+      /*
+      // Prints "Space Ghost is a talk show host."
+      console.log('%s %s is a %s.', person.name.first, person.name.last,
+      person.occupation);
+    then(function(){ 
+        
+        }
+    }).catch(function(error){ 
+        console.log('isVerify: ' + isVerify);
+        
+    }); ;
+    */
+
+    
 }
 

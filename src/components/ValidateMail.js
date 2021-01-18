@@ -15,23 +15,25 @@ function ValidateMail(props) {
   const enterRef = useRef(null);
   const handleSubmit = async (event) => {
     event.preventDefault(); 
+    console.log('in handle submit');
     
-    const success = await checkVerifyCode(props.email, varificationCode);
+    const data = await checkVerifyCode(props.email, varificationCode);
      
-    if (success === '驗證成功') {
+    if(data.message === '尚未驗證' ){
+      alert('連結資料庫出現問題');
+    }else if (data.success === '驗證成功') {
         setVerifySuccess(true);
         const registerSuccess = await registerInDatabase(props.stdID, props.name, props.email);
         if(registerSuccess === '註冊成功'){
             setRegisterInDatabaseSuccess('，已儲存資料')
         }
-        else if(registerSuccess === '註冊失敗'){
+        else {
           setRegisterInDatabaseSuccess('，儲存資料失敗')
         }
-
-    } else if(success === '驗證失敗'){
-        setWarning("驗證失敗，請再輸入一次");
-    } else{
-      setWarning("載入中...")
+    }else if(data.success === '驗證失敗'){
+      setWarning("驗證失敗，請再輸入一次");
+    }else{
+     alert('連結伺服器出現問題，請檢查網路連線')
     }
     
 } 
@@ -42,8 +44,8 @@ function ValidateMail(props) {
     setVarificationCode(e.target.value);
   }
   function reGenerateCode(email){
-    generateCode(email)
-    verifyCodeRef.current.focus()
+    generateCode(email);
+    verifyCodeRef.current.focus();
     setWarning("已重新寄送驗證碼")
   }
   function backToHomePage(){
@@ -61,6 +63,7 @@ function ValidateMail(props) {
     return (
       <div>
           {!verifySuccess?
+          <div className="form-container">
       <form onSubmit={ handleSubmit }>
         <h4>我們已寄送驗證信至 {props.email}<br/>請輸入六位數驗證碼</h4>
           <div>
@@ -75,11 +78,11 @@ function ValidateMail(props) {
           </div>
           <input className="design-button" ref ={enterRef} type='submit' value='送出' disabled={!validateForm()}></input>
           <br/>
-          <button className="design-button" type="primary" onClick={() => {reGenerateCode(props.email)}}>重新寄送驗證碼</button>
-          <div>{warning}</div>
           
           </form>
-          
+          <button className="design-button" type="primary" onClick={() => {reGenerateCode(props.email)}}>重新寄送驗證碼</button>
+          <div>{warning}</div>
+          </div>
           : <div className="pass-page">
             <div>驗證通過{registerInDatabaseSuccess}</div>
             <button className="design-button" onClick={() => {backToHomePage()}}>回到首頁</button>

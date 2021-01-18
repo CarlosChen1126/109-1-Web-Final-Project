@@ -8,21 +8,25 @@ const handleError = function(err) {
 
 exports.RegisterCheck = async (req, res) => {
     const stdID = req.body.stdID;
-    const name = req.body.name;
     const email = req.body.email;
     
-    const stdIDCheck = await Register.find({stdID: stdID});
-    const emailCheck = await Register.find({email: email});
-    console.log(stdIDCheck);
-    console.log(emailCheck);
-    if(stdIDCheck.length){
-        res.status(200).send({message: '學號已註冊'});
-    }
-    else if(emailCheck.length){
-        res.status(200).send({message: '信箱已被註冊'})
-    }else{
-        res.status(200).send({message: 'success'});
-    }
+    const stdIDCheck = await Register.findOne({
+        $or: [
+          { 'stdID': stdID },
+          { 'email': email }
+        ]
+      }, function(err, docs) {
+         if(err) {
+            res.status(500).send({message: '連接資料庫失敗'})
+         }else if(!docs){
+            res.status(200).send({message: 'success'});            
+        }else if(docs.stdID === stdID){
+            res.status(200).send({message: '學號已註冊'});
+        }else if(docs.email === email){
+            res.status(200).send({message: '信箱已被註冊'});
+        }
+      });
+
    
 }
 
@@ -44,7 +48,6 @@ exports.DeleteUsers = async (req, res) => {
 }
 
 exports.UpdateUserData = async (req, res) => {
-    console.log(req.body.stdID)
     await Register.update({_id : req.body.id},{ $set : { stdID : req.body.stdID , name : req.body.name }});
     res.status(200).send({message: 'success', registerResult: "update successfully"});
      

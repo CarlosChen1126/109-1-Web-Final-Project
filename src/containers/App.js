@@ -5,6 +5,7 @@ import ManagerLogin from '../components/ManagerLogin';
 import Home from '../components/Home';
 import Administrators from '../components/Administrators';
 import ShowPeople from '../components/ShowPeople';
+import ShowAdministrator from '../components/ShowAdministrator';
 import { getPeople } from '../axios';
 import './App.css'
 import{
@@ -77,6 +78,11 @@ function App() {
             <li>
               <Link to="/ShowPeople">
                 mks 人數： {people}
+              </Link>
+            </li>
+            <li>
+              <Link>
+                現在管理員： <ShowAdministrator/>
               </Link>
             </li>
           </ul>

@@ -22,10 +22,6 @@ function Administrator() {
         
         return () => isUnmount = true;
       },[data])
-    const editAdmin = (day, time) => {
-        console.log(day);
-        console.log(time);
-    }
     const AdministratorColumn = (props) => {
         const nameList = data.filter(data => (data.day === props.day && data.time === props.time));
         //console.log(nameList);
@@ -45,11 +41,11 @@ function Administrator() {
         return(
             <tr>
                 <td colSpan="2">{props.time}</td>
-                <td onClick={() => editAdmin("星期一", props.time)}><AdministratorColumn day="星期一" time={props.target}/></td>
-                <td onClick={() => editAdmin("星期二", props.time)}><AdministratorColumn day="星期二" time={props.target}/></td>
-                <td onClick={() => editAdmin("星期三", props.time)}><AdministratorColumn day="星期三" time={props.target}/></td>
-                <td onClick={() => editAdmin("星期四", props.time)}><AdministratorColumn day="星期四" time={props.target}/></td>
-                <td onClick={() => editAdmin("星期五", props.time)}><AdministratorColumn day="星期五" time={props.target}/></td>
+                <td><AdministratorColumn day="星期一" time={props.target}/></td>
+                <td><AdministratorColumn day="星期二" time={props.target}/></td>
+                <td><AdministratorColumn day="星期三" time={props.target}/></td>
+                <td><AdministratorColumn day="星期四" time={props.target}/></td>
+                <td><AdministratorColumn day="星期五" time={props.target}/></td>
             </tr>
         )
     }
