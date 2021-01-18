@@ -7,6 +7,7 @@ import './Settings.css'
 function Settings() { 
   const [account, setAccount] = useState("")     
   const [password, setPassword] = useState("");
+  const [warning, setWarning] = useState("");
   const [oldAccount, setOldAccount] = useState("");
   const [oldPassword, setOldPassword] = useState("");
   const [firstEntry, setFirstEntry] = useState(true);               
@@ -16,10 +17,21 @@ function Settings() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setWarning('修改中...');
     const data = await editEmailAccount(account, password);
     if(data === 'success'){
         alert('修改成功');
-        setFirstEntry(true);
+        setWarning('');
+        const dataEmail =  await getEmailAccount();
+        if(dataEmail){
+            setOldAccount(dataEmail.account);
+            setOldPassword(dataEmail.password);
+            setAccount(dataEmail.account);
+            setPassword(dataEmail.password);
+        }
+    }else{
+      alert('修改失敗');
+      setWarning('');
     }
     
   }
@@ -37,7 +49,6 @@ function Settings() {
   }
  
   useEffect (()=>{
-      console.log('in effect')
     
         accountRef.current.focus()
     async function getEmail(){
@@ -96,7 +107,9 @@ function Settings() {
             
              ></input>
          </div>
+         <div>{warning}</div>
          <input className="submit-button" ref ={enterRef} type="submit" value="修改" disabled={!validateForm()}/>
+         
        </form>
   </div>
   )

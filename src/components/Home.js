@@ -8,7 +8,7 @@ function Home() {
   return (
     <div className="home">
     <img src={titleImg} alt="the title of Home page"/>
-    <img className="background-image" src={door} alt="the background of Home page" />
+    <img className={"background-image", "animation"} src={door} alt="the background of Home page" />
     </div>
   )
     

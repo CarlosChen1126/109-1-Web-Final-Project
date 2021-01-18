@@ -19,15 +19,19 @@ function Registrants() {
 },[])
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log('in handle submit');
     const stdIDUpp = stdID.toUpperCase();
     setStdID(stdIDUpp);
     const success = await registerCheck( stdIDUpp, name, email );
     
     
     if(success === "success"){
+      setWarning('驗證信寄送中...');
       const message = await generateCode(email);
-      if(message === '寄送驗證信成功')
-        setRegisterSuccess(true)
+      if(message === '寄送驗證信成功'){
+        setRegisterSuccess(true);
+      }
+        
       else if(message === '寄送驗證信失敗'){
         alert('寄送驗證信失敗')
       }else if(message === '產生驗證碼失敗'){

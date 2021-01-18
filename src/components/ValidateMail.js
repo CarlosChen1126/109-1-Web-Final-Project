@@ -49,14 +49,16 @@ function ValidateMail(props) {
     setVarificationCode(e.target.value);
   }
   async function reGenerateCode(email){
-    
+    setWarning("驗證信重新寄送中...")
     verifyCodeRef.current.focus();
     const message = await generateCode(email);
     if(message === '寄送驗證信成功')
     setWarning("已重新寄送驗證信")
     else if(message === '寄送驗證信失敗'){
+      setWarning("")
       alert('重新寄送驗證信失敗')
     }else if(message === '產生驗證碼失敗'){
+      setWarning("")
       alert('重新產生驗證碼失敗')
     }
     

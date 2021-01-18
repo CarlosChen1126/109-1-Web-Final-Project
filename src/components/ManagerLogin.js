@@ -15,6 +15,7 @@ function ManagerLogin() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setWarning('登入中...');
     const success = await login(account,password);
     if (success === 'success') {
       setloginSuccess(true)

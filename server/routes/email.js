@@ -27,12 +27,15 @@ exports.UpdateEmailAccount = async (req, res) => {
             res.status(500).send({message: '連結資料庫失敗', account: '',password: ''});
 
         }
-        if(emailResult){
+        else if(emailResult){
             Email.update({ $set : { account : req.body.account , password : req.body.password }},function(err){
                 if (err){
                     res.status(500).send({message: '連結資料庫失敗'});
                 }
-                res.status(200).send({message: 'success'});
+                else{
+                    res.status(200).send({message: 'success'});
+                }
+                
             });  
         }
         else{

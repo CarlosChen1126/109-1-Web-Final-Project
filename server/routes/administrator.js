@@ -27,8 +27,10 @@ exports.DeleteAdministrator = async (req, res) => {
     await Administrator.deleteOne({day: req.body.day, time: req.body.time, name: req.body.name}, function (err) {
         if (err){
             res.status(200).send({message: '刪除失敗'});
-        };
-        res.status(200).send({message: '刪除成功'});
+        }else{
+            res.status(200).send({message: '刪除成功'});
+        }
+        
         // deleted at most one tank document
       });
     

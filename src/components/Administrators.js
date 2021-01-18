@@ -1,12 +1,14 @@
 import React, { useState, useEffect} from 'react';
 import { getAdministrator } from '../axios';
 import './Administrator.css';
+import loadingGif from '../assets/loading.gif'
 
 
 
 function Administrator() {
 
     const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         
@@ -17,6 +19,7 @@ function Administrator() {
            getAdministrator().then(result => {
             //console.log(result)   
             setData(result)
+            setLoading(false);
         })
         }
         
@@ -56,29 +59,34 @@ function Administrator() {
     }
     
   // TODO : fill in the rendering contents and logic
-  return (
-    <div>
-      <table>
-      <thead>
-          <tr>
-              <th colSpan="2">時段</th>
-              <th>星期一</th>
-              <th>星期二</th>
-              <th>星期三</th>
-              <th>星期四</th>
-              <th>星期五</th>
-          </tr>
-      </thead>
-      <tbody>
-          <AdministratorRow time="早上(10:20-12:20)" target="早上" />
-          <AdministratorRow time="下午A(13:20~15:20)" target="下午A" />
-          <AdministratorRow time="下午B(15:20~17:30)" target="下午B" />
-          <AdministratorRow time="晚上(18:30~21:20)" target="晚上"/>
-          
-      </tbody>
-          </table>
-             
-    </div>
-    )
+  if(loading){
+      return(<div className="center"><img src={loadingGif} alt="loading" width="250"></img></div>)
+  }else{
+    return (
+        <div>
+          <table>
+          <thead>
+              <tr>
+                  <th colSpan="2">時段</th>
+                  <th>星期一</th>
+                  <th>星期二</th>
+                  <th>星期三</th>
+                  <th>星期四</th>
+                  <th>星期五</th>
+              </tr>
+          </thead>
+          <tbody>
+              <AdministratorRow time="早上(10:20-12:20)" target="早上" />
+              <AdministratorRow time="下午A(13:20~15:20)" target="下午A" />
+              <AdministratorRow time="下午B(15:20~17:30)" target="下午B" />
+              <AdministratorRow time="晚上(18:30~21:20)" target="晚上"/>
+              
+          </tbody>
+              </table>
+                 
+        </div>
+        )
+  }
+  
 }
 export default Administrator;

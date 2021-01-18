@@ -61,7 +61,7 @@ exports.CheckVerifyCode = async (req, res) => {
             res.status(500).send({message: '尚未驗證', success: '驗證失敗'});
 
         }
-        if(verifyResult){
+        else if(verifyResult){
             console.log(verifyResult.length);
             res.status(200).send({message: '已驗證',success: '驗證成功'});
         }
