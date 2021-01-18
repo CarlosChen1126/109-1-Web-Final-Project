@@ -1,6 +1,6 @@
 import axios from 'axios';
-const API_ROOT = 'https://acs-web-final-project.herokuapp.com/api';
-//const API_ROOT = 'http://localhost:5000/api';
+//const API_ROOT = 'https://acs-web-final-project.herokuapp.com/api';
+const API_ROOT = 'http://localhost:5000/api';
 const instance = axios.create({
   baseURL: API_ROOT
 })
@@ -160,6 +160,19 @@ const getAdministrator = async () => {
 
 }
 
+const deleteAdministrator = async (day, time, name) => {
+  const {
+    data: {message: message}
+  } = await instance.delete('/deleteAdministrator',{
+    data: {
+      day: day,
+      time: time,
+      name: name
+    }
+  });
+  return message;
+}
+
 export{ login, registerCheck, getUserData, deleteUserData, updateUserData, generateCode, checkVerifyCode
- ,registerInDatabase,getUserTime, getPeople, insertAdministrator, getAdministrator };
+ ,registerInDatabase,getUserTime, getPeople, insertAdministrator, getAdministrator, deleteAdministrator };
 

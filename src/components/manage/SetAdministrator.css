@@ -1,0 +1,37 @@
+.item{
+    height:200px;
+}
+.functional-button-input{
+    width: 25%;
+    height: 20px;
+    font-size: 5px;
+}
+
+.person-data button{
+    visibility: hidden;
+}
+
+.person-data:hover button{
+    visibility: visible;
+}
+
+
+
+.functional-button-input:disabled{
+    cursor: not-allowed;
+}
+
+.insert-form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    width: 500px;
+    margin: auto;
+    color: black;
+}
+
+.insert-form-row{
+    font-size: 30px;
+}

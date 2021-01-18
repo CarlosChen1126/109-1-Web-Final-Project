@@ -10,15 +10,5 @@
 
 .background-image{
     height: 300px;
-    animation-name:oxxo;
-    animation-duration:2s;
 }
 
-@keyframes oxxo{
-  from{
-      left:0;
-  }
-  to{
-      left:100px;
-  }
-}

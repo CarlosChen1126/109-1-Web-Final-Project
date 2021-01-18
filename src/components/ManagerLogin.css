@@ -17,6 +17,7 @@ form{
   background-color:#0abab5;
   color: white;
   font-size: 20px;
+  cursor: pointer;
 }
 
 .submit-button:disabled{

@@ -1,38 +1,57 @@
-import React, { useState, useEffect} from 'react';
-import { getAdministrator } from '../../axios';
+import React, { useState, useEffect, useRef} from 'react';
+import { getAdministrator, deleteAdministrator, insertAdministrator } from '../../axios';
 import './SetAdministrator.css';
-
-
 
 function SetAdministrator() {
 
-    const [data, setdata] = useState([]);
+    const [data, setData] = useState([]);
+    const [insert, setInsert] = useState(false);
+    const [newDay, setNewDay] = useState('');
+    const [newTime, setNewTime] = useState('');
+    
 
     useEffect(() => {
-        
         let isUnmount = false;
 
-        
         if(!data.length&&!isUnmount){
            getAdministrator().then(result => {
-            //console.log(result)   
-            setdata(result)
+            setData(result)
         })
         }
-        
         return () => isUnmount = true;
       },[data])
-    
+
+    const insertAdmin = (day, time) => {
+        setInsert(true);
+        setNewDay(day);
+        setNewTime(time);
+    }
+    const deleteAdmin = (day, time, name) => {
+        const success = deleteAdministrator(day, time, name);
+        const dataFilter = data.filter(person => (!(person.day === day) || !(person.time === time) || !(person.name === name)));
+        setData(dataFilter);
+        if(success === "刪除失敗")
+            alert("刪除失敗");
+        else
+            alert("刪除成功");
+    }
     const AdministratorColumn = (props) => {
+
+        
         const nameList = data.filter(data => (data.day === props.day && data.time === props.time));
-        //console.log(nameList);
         if(nameList.length > 0){
-            const returnName = nameList.map((person) => <span>{person.name}<br/></span>);
-            console.log(returnName)
-            return returnName;
+            const name = nameList.map((person) => <span className="person-data">
+                {person.name} <button className="functional-button-insert" onClick={() => deleteAdmin(props.day ,props.time, person.name)}>刪除</button>
+            <br/>
+            </span>);
+            const returnEntry = <span>{name} <button onClick={ () => insertAdmin(props.day, props.time)}>新增</button>
+            </span>
+            return (returnEntry);
         }      
         else
-            return(<b>休息</b>)
+            return(<span><b>休息</b><br/><br/>
+            <button onClick={() => insertAdmin(props.day, props.time)}>新增</button>
+            </span>)
    
     }
     const AdministratorRow = (props) => {
@@ -42,79 +61,101 @@ function SetAdministrator() {
         return(
             <tr>
                 <td colSpan="2">{props.time}</td>
-                <td><AdministratorColumn day="星期一" time={props.target}/></td>
-                <td><AdministratorColumn day="星期二" time={props.target}/></td>
-                <td><AdministratorColumn day="星期三" time={props.target}/></td>
-                <td><AdministratorColumn day="星期四" time={props.target}/></td>
-                <td><AdministratorColumn day="星期五" time={props.target}/></td>
-                {/*
-                <td>徐子程<br/>楊學翰</td>
-                <td>勞志毅<br/>邱吉鈞</td>
-                <td>徐子程<br/>徐有齊</td>
-                <td>王懷志</td>
-                <td>勞志毅<br/>許家誠</td>
-                */}
+                <td className="item"><AdministratorColumn day="星期一" time={props.target}/></td>
+                <td className="item"><AdministratorColumn day="星期二" time={props.target}/></td>
+                <td className="item"><AdministratorColumn day="星期三" time={props.target}/></td>
+                <td className="item"><AdministratorColumn day="星期四" time={props.target}/></td>
+                <td className="item"><AdministratorColumn day="星期五" time={props.target}/></td>
             </tr>
         )
     }
+
     
-  // TODO : fill in the rendering contents and logic
-  return (
-    <div>
-      <table>
-      <thead>
-          <tr>
-              <th colSpan="2">時段</th>
-              <th>星期一</th>
-              <th>星期二</th>
-              <th>星期三</th>
-              <th>星期四</th>
-              <th>星期五</th>
-          </tr>
-      </thead>
-      <tbody>
-          <AdministratorRow time="早上(10:20-12:20)" target="早上" />
-          <AdministratorRow time="下午A(13:20~15:20)" target="下午A" />
-          <AdministratorRow time="下午B(15:20~17:30)" target="下午B" />
-          <AdministratorRow time="晚上(18:30~21:20)" target="晚上"/>
-          {/*
-          <tr>
-              <td colSpan="2">早上(10:20-12:20)</td>
-              <td>張喬善</td>
-              <td>馬健凱</td>
-              <td>張喬善<br/>施力維</td>
-              <td>吳兩原<br/>蔡亞辰</td>
-              <td>陳柏志<br/>謝明圜</td>
-          </tr>
-          <tr>
-              <td colSpan="2">下午A(13:20~15:20)</td>
-              <td>周柏融</td>
-              <td>馬健凱<br/>吳兩原</td>
-              <td>詹侑昕<br/>謝明圜</td>
-              <td>許家誠<br/>蔡承佑</td>
-              <td><b>休息</b></td>
-          </tr>
-          <tr>
-              <td colSpan="2">下午B(15:20~17:30)</td>
-              <td>蔡亞辰<br/>楊學翰</td>
-              <td>周柏融<br/>徐有齊</td>
-              <td>黃曜廷<br/>詹侑昕</td>
-              <td><b>休息</b></td>
-              <td><b>休息</b></td>
-          </tr>
-          <tr>
-              <td colSpan="2">晚上(18:30~21:20)</td>
-              <td>徐子程<br/>楊學翰</td>
-              <td>勞志毅<br/>邱吉鈞</td>
-              <td>徐子程<br/>徐有齊</td>
-              <td>王懷志</td>
-              <td>勞志毅<br/>許家誠</td>
-          </tr>
-          */}
-      </tbody>
-          </table>
-             
-    </div>
+const InsertMode = (props) => {
+    const [newAdmin, setNewAdmin] = useState('');
+    const nameRef = useRef(null);
+    const submitRef = useRef(null);
+
+    useEffect(() => {
+        nameRef.current.focus();
+      },[])
+    const handleNewAdminChange = (e) => {
+        setNewAdmin(e.target.value);
+    };
+
+    function insertAdminToBackend(day, time, name){
+        if(name === ""){
+            alert("姓名須非空");
+        }
+        else{
+            const success = insertAdministrator(day, time, name);
+            if(success === "新增失敗")
+                alert("新增失敗");
+            else{
+                alert("新增成功");
+                setInsert(false);
+                const newData = data;
+                newData.push({day: day, time: time, name: name});
+                setData(newData)
+            }
+                
+        }
+        
+        
+    };
+    return(
+        <div className="insert-form-container">
+            <form className="insert-form">
+                <h2>新增管理者頁面</h2>
+                <div className="insert-form-row">日期: {props.day}</div>
+                <div className="insert-form-row">時間: {props.time}</div>
+                <input ref={nameRef} value={newAdmin} onChange={handleNewAdminChange} placeholder="請入新的管理者"
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      submitRef.current.focus()
+                    }
+                  }}/>
+                <button ref={submitRef} className="functional-button-insert" onClick={() => insertAdminToBackend(props.day, props.time, newAdmin)}>送出</button>
+            </form>
+        </div>
+
+
     )
 }
+    
+  // TODO : fill in the rendering contents and logic
+  if(insert){
+    return(
+        <InsertMode day={newDay} time={newTime}/>
+    )
+  }
+  else{
+    return (
+        <div>
+          <table>
+          <thead>
+              <tr>
+                  <th colSpan="2">時段</th>
+                  <th>星期一</th>
+                  <th>星期二</th>
+                  <th>星期三</th>
+                  <th>星期四</th>
+                  <th>星期五</th>
+              </tr>
+          </thead>
+          <tbody>
+              <AdministratorRow time="早上(10:20-12:20)" target="早上" />
+              <AdministratorRow time="下午A(13:20~15:20)" target="下午A" />
+              <AdministratorRow time="下午B(15:20~17:30)" target="下午B" />
+              <AdministratorRow time="晚上(18:30~21:20)" target="晚上"/>
+              
+          </tbody>
+              </table>
+                 
+        </div>
+        )
+  }
+  
+}
+
 export default SetAdministrator;

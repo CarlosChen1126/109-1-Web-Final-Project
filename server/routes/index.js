@@ -19,7 +19,7 @@ function main(app) {
   app.get('/api/getOnlinePeople', wrap(onlineRoute.getOnlinePeople));
   app.post('/api/insertAdministrator', wrap(administratorRoute.InsertAdministrator));
   app.get('/api/getAdministrator', wrap(administratorRoute.GetAdministrator));
-
+  app.delete('/api/deleteAdministrator', wrap(administratorRoute.DeleteAdministrator));
 }
 
 module.exports = main;

@@ -13,14 +13,27 @@ exports.InsertAdministrator = async (req, res) => {
 
     administrator.save(function (err) {
         if (err) {
-            res.status(404).send({message: 'failed', error: err});
-            return handleError(err);
+            res.status(200).send({message: '新增失敗', error: err});
         }
         // saved!
         else {
-            res.status(200).send({message: 'success', error: err});
+            res.status(200).send({message: '新增成功', error: err});
         }
         
     });
+}
+
+exports.DeleteAdministrator = async (req, res) => {
+    await Administrator.deleteOne({day: req.body.day, time: req.body.time, name: req.body.name}, function (err) {
+        if (err){
+            res.status(200).send({message: '刪除失敗'});
+        };
+        res.status(200).send({message: '刪除成功'});
+        // deleted at most one tank document
+      });
+    
+     
+    // TODO : get answers from mongodb,
+    // check answers coming from frontend and return score to frontend
 }
 
