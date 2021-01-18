@@ -25,10 +25,16 @@ function ValidateMail(props) {
         setVerifySuccess(true);
         const registerSuccess = await registerInDatabase(props.stdID, props.name, props.email);
         if(registerSuccess === '註冊成功'){
-            setRegisterInDatabaseSuccess('，已儲存資料')
+            setRegisterInDatabaseSuccess('，已儲存資料，將於 3 秒後回到首頁')
+            setTimeout(() => {
+              backToHomePage()
+            }, 3000);
         }
         else {
-          setRegisterInDatabaseSuccess('，儲存資料失敗')
+          setRegisterInDatabaseSuccess('，儲存資料失敗，將於 3 秒後回到首頁')
+          setTimeout(() => {
+            backToHomePage()
+          }, 3000);
         }
     }else if(data.success === '驗證失敗'){
       setWarning("驗證失敗，請再輸入一次");

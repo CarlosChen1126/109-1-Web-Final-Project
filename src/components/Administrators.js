@@ -22,22 +22,27 @@ function Administrator() {
         
         return () => isUnmount = true;
       },[data])
+
     const AdministratorColumn = (props) => {
-        const nameList = data.filter(data => (data.day === props.day && data.time === props.time));
-        //console.log(nameList);
-        if(nameList.length > 0){
-            const returnName = nameList.map((person) => <span>{person.name}<br/></span>);
-            console.log(returnName)
-            return returnName;
-        }      
-        else
-            return(<b>休息</b>)
+        if(data.length){
+            const nameList = data.filter(data => (data.day === props.day && data.time === props.time));
+            //console.log(nameList);
+            if(nameList.length > 0){
+                const returnName = nameList.map((person) => <span>{person.name}<br/></span>);
+                return returnName;
+            }      
+            else{
+                return(<b>休息</b>)
+            }
+                
+            }
+        else{
+            return(<div></div>);
+        }
+        
    
     }
     const AdministratorRow = (props) => {
-
-    
-
         return(
             <tr>
                 <td colSpan="2">{props.time}</td>

@@ -37,21 +37,26 @@ function SetAdministrator() {
     }
     const AdministratorColumn = (props) => {
 
-        
-        const nameList = data.filter(data => (data.day === props.day && data.time === props.time));
-        if(nameList.length > 0){
-            const name = nameList.map((person) => <span className="person-data">
-                {person.name} <button className="functional-button-insert" onClick={() => deleteAdmin(props.day ,props.time, person.name)}>刪除</button>
-            <br/>
-            </span>);
-            const returnEntry = <span>{name} <button onClick={ () => insertAdmin(props.day, props.time)}>新增</button>
-            </span>
-            return (returnEntry);
-        }      
-        else
-            return(<span><b>休息</b><br/><br/>
-            <button onClick={() => insertAdmin(props.day, props.time)}>新增</button>
-            </span>)
+        if(data.length){
+            const nameList = data.filter(data => (data.day === props.day && data.time === props.time));
+            if(nameList.length > 0){
+                const name = nameList.map((person) => <span className="person-data">
+                    {person.name} <button className="functional-button-insert" onClick={() => deleteAdmin(props.day ,props.time, person.name)}>刪除</button>
+                <br/>
+                </span>);
+                const returnEntry = <span>{name} <button onClick={ () => insertAdmin(props.day, props.time)}>新增</button>
+                </span>
+                return (returnEntry);
+            }      
+            else
+                return(<span><b>休息</b><br/><br/>
+                <button onClick={() => insertAdmin(props.day, props.time)}>新增</button>
+                </span>)
+        }
+        else{
+            return(<div></div>)
+        }
+       
    
     }
     const AdministratorRow = (props) => {
