@@ -38,6 +38,7 @@ ul {
 .icon {
     position: relative;
     display: inline-block;
+    color: white;
 }
 
 li .hover-hint {

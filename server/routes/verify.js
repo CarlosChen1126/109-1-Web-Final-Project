@@ -37,10 +37,6 @@ exports.GenerateCode = async (req, res) => {
 
 exports.CheckVerifyCode = async (req, res) => {
 
-    const handleError = function(err) {
-        console.error(err);
-        // handle your error
-    };
     const email = req.body.email;
     const verifyCode = req.body.verifyCode;
  
@@ -64,18 +60,6 @@ exports.CheckVerifyCode = async (req, res) => {
             res.status(200).send({message: '已驗證', success: '驗證失敗'});
         
       }});
-      /*
-      // Prints "Space Ghost is a talk show host."
-      console.log('%s %s is a %s.', person.name.first, person.name.last,
-      person.occupation);
-    then(function(){ 
-        
-        }
-    }).catch(function(error){ 
-        console.log('isVerify: ' + isVerify);
-        
-    }); ;
-    */
 
     
 }

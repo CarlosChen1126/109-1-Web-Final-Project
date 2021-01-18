@@ -3,10 +3,12 @@ const registerRoute = require('./register');
 const verifyRoute = require('./verify');
 const accessRoute = require('./access');
 const onlineRoute = require('./online');
-const administratorRoute = require('./administrator')
+const administratorRoute = require('./administrator');
+const emailRoute = require('./email');
 const wrap = fn => (...args) => fn(...args).catch(args[2])
 
 function main(app) {
+
   app.post('/api/login', wrap(loginRoute.Login));
   app.post('/api/registerCheck', wrap(registerRoute.RegisterCheck));
   app.post('/api/update', wrap(registerRoute.UpdateUserData));
@@ -20,6 +22,8 @@ function main(app) {
   app.post('/api/insertAdministrator', wrap(administratorRoute.InsertAdministrator));
   app.get('/api/getAdministrator', wrap(administratorRoute.GetAdministrator));
   app.delete('/api/deleteAdministrator', wrap(administratorRoute.DeleteAdministrator));
+  app.get('/api/getEmailAccount', wrap(emailRoute.GetEmailAccount));
+  app.post('/api/updateEmailAccount', wrap(emailRoute.UpdateEmailAccount))
 }
 
 module.exports = main;

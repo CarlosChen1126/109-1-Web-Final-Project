@@ -81,9 +81,10 @@ function App() {
               </Link>
             </li>
             <li>
-              <Link>
+              <div className="icon">
                 現在管理員： <ShowAdministrator/>
-              </Link>
+              </div>
+              
             </li>
           </ul>
         

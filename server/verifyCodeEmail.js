@@ -1,9 +1,15 @@
 const nodemailer = require('nodemailer');
-const fs = require('fs');
 const smptCfg = require('../package').config.smtp;
+const Mail = require('./models/mail');
 require('dotenv').config();
 
-function sendMail(email, verifyCode) {
+async function sendMail(email, verifyCode) {
+
+  const data = await Mail.findOne();
+  
+  const account = data.account;
+  const password = data.password;
+
   var     mailOptions = {
           from: '門禁系統(請勿自動回復)<your@gmail.com>',
           to: email,
@@ -19,13 +25,14 @@ function sendMail(email, verifyCode) {
       port: smptCfg.port,
       secure: smptCfg.secure, // true for 465, false for other ports
       auth: {
-        user: process.env.MAIL_ACCOUNT,
-        pass: process.env.MAIL_PASSWORD
+        user: account,
+        pass: password
       },
       tls: {
         rejectUnauthorized: false
       }
-    });    
+    });   
+     
       // 寄信
       transporter.sendMail(mailOptions, function(error, info){
         if (error) {
@@ -34,6 +41,7 @@ function sendMail(email, verifyCode) {
           console.log('Email sent: ' + info.response);
         }
       });
+      
 }
 
 export {sendMail};

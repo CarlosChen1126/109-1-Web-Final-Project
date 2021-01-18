@@ -15,8 +15,6 @@ const CurrentAdministrator = (props) => {
         dayString = "星期四";
     }else if(props.day === 5){
         dayString = "星期五";
-    }else{
-        alert("有錯誤")
     }
     const nameList = props.data.filter(data => (data.day === dayString && data.time === props.time));
 
@@ -96,6 +94,8 @@ function ShowAdministrator() {
         return(<CurrentAdministrator time="晚上" day = {day} data={data}/>)
       }else if(hour === 21 && minute <= 20){
         return(<CurrentAdministrator time="晚上" day = {day} data={data}/>)
+      }else{
+          return (<b>休息</b>)
       }
    
 }

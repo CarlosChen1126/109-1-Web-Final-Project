@@ -1,6 +1,6 @@
 import axios from 'axios';
-//const API_ROOT = 'https://acs-web-final-project.herokuapp.com/api';
-const API_ROOT = 'http://localhost:5000/api';
+const API_ROOT = 'https://acs-web-final-project.herokuapp.com/api';
+//const API_ROOT = 'http://localhost:5000/api';
 const instance = axios.create({
   baseURL: API_ROOT
 })
@@ -174,6 +174,30 @@ const deleteAdministrator = async (day, time, name) => {
   return message;
 }
 
+const getEmailAccount = async () => {
+  const {
+    data: {account: account,
+    password: password,
+  message: message}
+  }= await instance.get('/getEmailAccount');
+
+
+  
+    
+  return {account, password, message};
+
+}
+
+const editEmailAccount = async (account, password) => {
+  const {
+    data: {message: message}
+  }=await instance.post('/updateEmailAccount',  {account: account, password: password});
+
+  return message;
+  
+}
+
 export{ login, registerCheck, getUserData, deleteUserData, updateUserData, generateCode, checkVerifyCode
- ,registerInDatabase,getUserTime, getPeople, insertAdministrator, getAdministrator, deleteAdministrator };
+ ,registerInDatabase,getUserTime, getPeople, insertAdministrator, getAdministrator, deleteAdministrator, getEmailAccount
+, editEmailAccount };
 

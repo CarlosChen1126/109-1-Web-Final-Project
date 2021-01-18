@@ -52,7 +52,7 @@ function ManagerLogin() {
          <h4 className="ManagerLogin-title">管理員登入</h4>
          <div>
              {'帳號'}
-             <input ref={accountRef} placeholder="Your Account" name='account' value={account} style={{ marginBottom: 10 }} onChange={handleAccountChange}
+             <input ref={accountRef} placeholder="管理者帳號" name='account' value={account} style={{ marginBottom: 10 }} onChange={handleAccountChange}
              onKeyDown={(e) => {
               if (e.key === 'Enter') {
                 passwordRef.current.focus()
@@ -63,7 +63,7 @@ function ManagerLogin() {
          
          <div>
              {'密碼'}
-             <input  ref ={passwordRef} type="password" placeholder="Your Password" name='password' value={password} onChange={handlePasswordChange}
+             <input  ref ={passwordRef} type= "password" placeholder="管理者密碼" name='password' style={{ marginBottom: 10 }} value={password} onChange={handlePasswordChange}
                     onKeyDown={(e) => {
                     if (e.key === 'Enter') {
                       enterRef.current.click()
