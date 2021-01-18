@@ -1,5 +1,5 @@
 import React, { useState, useEffect,useRef } from 'react';
-import { registerCheck } from '../axios';
+import { registerCheck, generateCode } from '../axios';
 import  ValidateMail  from './ValidateMail';
 import './Registrants.css';
 
@@ -22,7 +22,21 @@ function Registrants() {
     const stdIDUpp = stdID.toUpperCase();
     setStdID(stdIDUpp);
     const success = await registerCheck( stdIDUpp, name, email );
-    (success === "success") ? setRegisterSuccess(true) : setWarning(success);
+    
+    
+    if(success === "success"){
+      const message = await generateCode(email);
+      if(message === '寄送驗證信成功')
+        setRegisterSuccess(true)
+      else if(message === '寄送驗證信失敗'){
+        alert('寄送驗證信失敗')
+      }else if(message === '產生驗證碼失敗'){
+        alert('產生驗證碼失敗')
+      }
+
+    }else{
+      setWarning(success);
+    } 
     
     
   }

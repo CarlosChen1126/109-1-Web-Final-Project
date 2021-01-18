@@ -15,7 +15,6 @@ function ValidateMail(props) {
   const enterRef = useRef(null);
   const handleSubmit = async (event) => {
     event.preventDefault(); 
-    console.log('in handle submit');
     
     const data = await checkVerifyCode(props.email, varificationCode);
      
@@ -49,17 +48,25 @@ function ValidateMail(props) {
   function handleVarificationCodeChange(e){
     setVarificationCode(e.target.value);
   }
-  function reGenerateCode(email){
-    generateCode(email);
+  async function reGenerateCode(email){
+    
     verifyCodeRef.current.focus();
-    setWarning("已重新寄送驗證碼")
+    const message = await generateCode(email);
+    if(message === '寄送驗證信成功')
+    setWarning("已重新寄送驗證信")
+    else if(message === '寄送驗證信失敗'){
+      alert('重新寄送驗證信失敗')
+    }else if(message === '產生驗證碼失敗'){
+      alert('重新產生驗證碼失敗')
+    }
+    
   }
   function backToHomePage(){
     setBackToHome(true);
     
   }
   useEffect (()=>{
-    generateCode(props.email);
+    
     verifyCodeRef.current.focus()
 },[])
   if(backToHome){

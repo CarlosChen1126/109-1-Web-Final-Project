@@ -26,12 +26,17 @@ exports.GenerateCode = async (req, res) => {
         }
         // saved!
         else {
-            const sendMailResult = sendMail(email, verifyCode);
-            if(sendMailResult === '寄信失敗'){
-                res.status(200).send({message: '寄送驗證信失敗', error: err});
-            }else if(sendMailResult === '寄信成功'){
-                res.status(200).send({message: '寄送驗證信成功', error: err});
+            async function sendMailResult(email, verifyCode){
+                const sendMailResult = await sendMail(email, verifyCode);
+                console.log('sendMailResult: ' + sendMailResult);
+                if(sendMailResult === false){
+                    res.status(200).send({message: '寄送驗證信失敗', error: err});
+                }else if(sendMailResult === true){
+                    res.status(200).send({message: '寄送驗證信成功', error: err});
+                }
             }
+            sendMailResult(email, verifyCode);
+            
             
             
         }

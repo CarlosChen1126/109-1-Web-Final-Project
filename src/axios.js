@@ -1,6 +1,6 @@
 import axios from 'axios';
-//const API_ROOT = 'https://acs-web-final-project.herokuapp.com/api';
-const API_ROOT = 'http://localhost:5000/api';
+const API_ROOT = 'https://acs-web-final-project.herokuapp.com/api';
+//const API_ROOT = 'http://localhost:5000/api';
 const instance = axios.create({
   baseURL: API_ROOT
 })
@@ -99,7 +99,7 @@ const generateCode = async (email) => {
       }
     } = await instance.post('/generateCode',  {email: email});
     
-
+    console.log(message);
     return await message;
 }
 
