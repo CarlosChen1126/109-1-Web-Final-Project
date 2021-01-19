@@ -17,7 +17,7 @@ async function sendMail(email, verifyCode) {
             to: email,
             bcc: '',
             subject: '門禁系統驗證碼',
-            text: '驗證碼為' + verifyCode
+            text: '驗證碼為' + verifyCode  + '\n若重複寄信請以最新版本為主'
             // text: 'That was easy!',
             // html: mailBody // 下方讀檔後覆蓋
           };

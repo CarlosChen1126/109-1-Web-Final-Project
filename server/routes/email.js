@@ -1,4 +1,19 @@
 const Email = require('../models/mail');
+exports.CheckEmailIsExist = async (req, res) => {
+    //const login = new Login({account: 'ACS', password: 'aloha'});
+    //login.save();
+
+    const emailResult = await Email.find({});
+    if(emailResult.length){
+        res.status(200).send({message: true});
+    }
+    else{
+        res.status(200).send({message: false});
+    }
+     
+    // TODO : get answers from mongodb,
+    // check answers coming from frontend and return score to frontend
+}
 
 exports.GetEmailAccount = async (req, res) => {
     const email = Email.findOne();
@@ -6,7 +21,7 @@ exports.GetEmailAccount = async (req, res) => {
         if (err) {
             res.status(500).send({message: '連結資料庫失敗', account: '',password: ''});
         }
-        if(emailResult){
+        else if(emailResult){
             res.status(200).send({message: '連結資料庫成功', account: emailResult.account,password: emailResult.password});
         }
         else{

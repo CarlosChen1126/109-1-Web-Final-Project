@@ -30,7 +30,6 @@
   40%  {left: 200px; top:0px;}
   50%  { left:200px; top:200px;}
   70%  { left:0px; top: 100px;}
-  90% {left: 0px; top: 50px;}
   100% { width: 100px; height: 100px; left: 0px; top: 0px;}
   
 }

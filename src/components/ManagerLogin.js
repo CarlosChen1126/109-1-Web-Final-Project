@@ -1,10 +1,14 @@
 import React, {useState, useEffect, useRef} from 'react';
-import { login } from '../axios'
+import { checkAccountIsExist, login } from '../axios'
 import { Redirect } from "react-router-dom";
+import loadingGif from '../assets/loading.gif';
+import SetAccount from './SetAccount';
 
 import './ManagerLogin.css'
 
 function ManagerLogin() {
+  const [accountExist, setAccountExist] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [loginSuccess, setloginSuccess] = useState(false)  
   const [account, setAccount] = useState("")     
   const [password, setPassword] = useState("")               
@@ -32,7 +36,23 @@ function ManagerLogin() {
     return account.length > 0 && password.length > 0;
   }
   useEffect (()=>{
-    accountRef.current.focus()
+    
+    async function checkAccount(){
+      checkAccountIsExist().then(result => {
+        setAccountExist(result);
+        
+        setLoading(false);
+        if(result){
+          accountRef.current.focus() 
+        }
+      }  
+      );
+    
+        
+    }
+    checkAccount();
+    
+    
 },[]) 
     
   const handleAccountChange = (e) => {
@@ -42,43 +62,53 @@ function ManagerLogin() {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   }
- 
-  // TODO : fill in the rendering contents and logic
-  if(loginSuccess){
-  return  <Redirect to="/Manage" />
-}else{
-  return (
-    <div>
-         <form  onSubmit={handleSubmit}>
-         <h4 className="ManagerLogin-title">管理員登入</h4>
-         <div>
-             {'帳號'}
-             <input ref={accountRef} placeholder="管理者帳號" name='account' value={account} style={{ marginBottom: 10 }} onChange={handleAccountChange}
-             onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                passwordRef.current.focus()
-              }
-            }}
-             ></input>
-         </div>
-         
-         <div>
-             {'密碼'}
-             <input  ref ={passwordRef} type= "password" placeholder="管理者密碼" name='password' style={{ marginBottom: 10 }} value={password} onChange={handlePasswordChange}
-                    onKeyDown={(e) => {
+  if(loading){
+    return(<div className="center"><img src={loadingGif} alt="loading" width="250"></img></div>)
+  }
+  else{
+    if(accountExist){
+      // TODO : fill in the rendering contents and logic
+      if(loginSuccess){
+        return  <Redirect to="/Manage" />
+      }else{
+        return (
+          <div>
+               <form  onSubmit={handleSubmit}>
+               <h4 className="ManagerLogin-title">管理員登入</h4>
+               <div>
+                   {'帳號'}
+                   <input ref={accountRef} placeholder="管理者帳號" name='account' value={account} style={{ marginBottom: 10 }} onChange={handleAccountChange}
+                   onKeyDown={(e) => {
                     if (e.key === 'Enter') {
-                      enterRef.current.click()
+                      passwordRef.current.focus()
                     }
                   }}
-            
-             ></input>
-         </div>
-         <div>{warning}</div> 
-         <input className="submit-button" ref ={enterRef} type="submit" value="登入" disabled={!validateForm()}/>
-       </form>
-  </div>
-  )
-}
+                   ></input>
+               </div>
+               
+               <div>
+                   {'密碼'}
+                   <input  ref ={passwordRef} type= "password" placeholder="管理者密碼" name='password' style={{ marginBottom: 10 }} value={password} onChange={handlePasswordChange}
+                          onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            enterRef.current.click()
+                          }
+                        }}
+                  
+                   ></input>
+               </div>
+               <div>{warning}</div> 
+               <input className="submit-button" ref ={enterRef} type="submit" value="登入" disabled={!validateForm()}/>
+             </form>
+        </div>
+        )
+      }
+     }else{
+       return(<SetAccount/>)
+     }
+  }
+ 
+  
   
 }
 

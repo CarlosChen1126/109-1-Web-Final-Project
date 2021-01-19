@@ -19,6 +19,7 @@ function Registrants() {
 },[])
   const handleSubmit = async (event) => {
     event.preventDefault();
+    document.getElementById('submit').disabled = "disabled";
     console.log('in handle submit');
     const stdIDUpp = stdID.toUpperCase();
     setStdID(stdIDUpp);
@@ -33,13 +34,16 @@ function Registrants() {
       }
         
       else if(message === '寄送驗證信失敗'){
+        document.getElementById('submit').disabled = false;
         alert('寄送驗證信失敗')
       }else if(message === '產生驗證碼失敗'){
+        document.getElementById('submit').disabled = false;
         alert('產生驗證碼失敗')
       }
 
     }else{
       setWarning(success);
+      document.getElementById('submit').disabled = false;
     } 
     
     
@@ -66,7 +70,7 @@ function Registrants() {
     <div >
       {!registerSuccess ?
           <React.Fragment>
-         <form onSubmit={ handleSubmit }>
+         <form onSubmit={ handleSubmit } >
          <h4>使用者註冊</h4>
          <div>
              {'學號'}
@@ -96,7 +100,7 @@ function Registrants() {
             }}></input>
          </div>
          <div>{warning}</div>
-         <input className="submit-button" ref={enterRef} type='submit' value='送出' disabled={!validateForm()}></input>
+         <input className="submit-button" id="submit" ref={enterRef} type='submit' value='送出' disabled={!validateForm()}></input>
        </form>
        </React.Fragment>
        : <React.Fragment><ValidateMail email= {email} name={name} stdID={stdID}/></React.Fragment>

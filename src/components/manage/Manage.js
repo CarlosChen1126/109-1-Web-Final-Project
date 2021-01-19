@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import Management from './Management';
 import Online from './Online';
 import SetAdministrator from './SetAdministrator';
-import Settings from './Settings';
+import EmailSettings from './EmailSettings';
+import AccountSettings from './AccountSettings';
 import { Redirect } from "react-router-dom";
+import { checkEmailIsExist } from "../../axios"
 import{
   HashRouter as Router,
   Switch,
@@ -15,7 +17,8 @@ import manageIcon from '../../assets/manage.png';
 import onlineIcon from '../../assets/online.png';
 import logoutIcon from '../../assets/logout.png';
 import administratorIcon from '../../assets/administrator.png';
-import settingsIcon from '../../assets/settings.png';
+import emailIcon from '../../assets/email.png';
+import accountIcon from '../../assets/settings.png'
 
 function Manage() {
     const [logoutValue, setLogout] = useState(false);
@@ -24,6 +27,21 @@ function Manage() {
         localStorage.setItem("auth", false);
         setLogout(true);
     }
+
+    useEffect (()=>{
+    
+      
+  async function emailIsExist(){
+      const data =  await checkEmailIsExist();
+      if(data === false){
+        alert('請先至信箱管理新增寄信帳號密碼');
+      }
+      
+      
+  }
+  
+  emailIsExist();    
+},[]); 
 
     if(logoutValue){
         return  <Redirect to="/ManagerLogin" />
@@ -59,9 +77,17 @@ function Manage() {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/Manage/Settings">
+                  <Link to="/Manage/AccountSettings">
                   <div className="icon">
-                        <img className="icon-img" alt="settings" src={settingsIcon}/>
+                        <img className="icon-img" alt="email-settings" src={accountIcon}/>
+                        <div className="hover-hint">帳密設定</div>
+                    </div>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/Manage/EmailSettings">
+                  <div className="icon">
+                        <img className="icon-img" alt="email-settings" src={emailIcon}/>
                         <div className="hover-hint">信箱設定</div>
                     </div>
                   </Link>
@@ -87,8 +113,11 @@ function Manage() {
                   <Route path="/Manage/SetAdministrator">
                     <SetAdministrator />
                   </Route>
-                  <Route path="/Manage/Settings">
-                    <Settings />
+                  <Route path="/Manage/AccountSettings">
+                    <AccountSettings />
+                  </Route>
+                  <Route path="/Manage/EmailSettings">
+                    <EmailSettings />
                   </Route>
                 </Switch>
               </div>

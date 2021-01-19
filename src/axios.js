@@ -5,6 +5,37 @@ const instance = axios.create({
   baseURL: API_ROOT
 })
 
+
+const checkAccountIsExist = async () => {
+  const {
+      data: {message}
+    } = await instance.post('/checkAccountIsExist');
+    return await (message);
+}
+const getManagerAccount = async () => {
+  const {
+    data: {account: account,
+    password: password,
+  message: message}
+  }= await instance.get('/getManagerAccount');
+
+
+  
+    
+  return {account, password, message};
+
+}
+
+
+const editManagerAccount = async (account, password) => {
+  const {
+    data: {message: message}
+  }=await instance.post('/updateManagerAccount',  {account: account, password: password});
+
+  return message;
+  
+}
+
 const login = async (account, password) => {
     const {
         data: {message}
@@ -192,6 +223,7 @@ const getEmailAccount = async () => {
 
 }
 
+
 const editEmailAccount = async (account, password) => {
   const {
     data: {message: message}
@@ -200,8 +232,24 @@ const editEmailAccount = async (account, password) => {
   return message;
   
 }
+const checkEmailIsExist = async () => {
+  const {
+      data: {message}
+    } = await instance.post('/checkEmailIsExist');
+    return await (message);
+}
 
-export{ login, registerCheck, getUserData, deleteUserData, updateUserData, generateCode, checkVerifyCode
+const addManagerAccount = async (account, password) => {
+  const {
+    data: {message: message}
+  }=await instance.post('/addManagerAccount',  {account: account, password: password});
+
+  return message;
+  
+}
+
+export{ checkAccountIsExist, getManagerAccount, editManagerAccount, login, registerCheck 
+  ,getUserData, deleteUserData, updateUserData, generateCode, checkVerifyCode
  ,registerInDatabase,getUserTime, getPeople, insertAdministrator, getAdministrator, deleteAdministrator, getEmailAccount
-, editEmailAccount };
+,checkEmailIsExist, editEmailAccount, addManagerAccount };
 

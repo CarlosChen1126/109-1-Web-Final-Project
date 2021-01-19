@@ -2,9 +2,9 @@ import React, {useState, useEffect, useRef} from 'react';
 import { getEmailAccount, editEmailAccount } from '../../axios';
 
 
-import './Settings.css'
+import './EmailSettings.css'
 
-function Settings() { 
+function EmailSettings() { 
   const [account, setAccount] = useState("")     
   const [password, setPassword] = useState("");
   const [warning, setWarning] = useState("");
@@ -98,7 +98,7 @@ function Settings() {
          
          <div>
              {'信箱密碼'}
-             <input  ref={passwordRef} type="password" placeholder="新密碼" name='password' value={password} onChange={handlePasswordChange}
+             <input  ref={passwordRef} type="password" placeholder="信箱密碼" name='password' value={password} onChange={handlePasswordChange}
                     onKeyDown={(e) => {
                     if (e.key === 'Enter') {
                       enterRef.current.click()
@@ -119,4 +119,4 @@ function Settings() {
 
 
 
-export default Settings;
+export default EmailSettings;

@@ -65,9 +65,9 @@ function ShowAdministrator() {
       }else if(hour === 21 && minute > 20){
           return(<b>休息</b>)
       }else if(hour >= 9 && hour <= 11){
-          return(<CurrentAdministrator time="上午" day = {day} data={data}/>)
+          return(<CurrentAdministrator time="早上" day = {day} data={data}/>)
       }else if(hour === 12 && minute <= 20){
-        return(<CurrentAdministrator time="上午" day = {day} data={data}/>)
+        return(<CurrentAdministrator time="早上" day = {day} data={data}/>)
       }else if(hour === 12 && minute > 20){
         return(<b>休息</b>)
       }else if(hour === 13 && minute <= 20){
