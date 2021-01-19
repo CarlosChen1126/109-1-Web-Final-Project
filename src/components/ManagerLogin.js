@@ -48,9 +48,7 @@ function ManagerLogin() {
     
         
     }
-    if(!loading){
-      accountRef.current.focus() 
-    }
+
     checkAccount();
     
     

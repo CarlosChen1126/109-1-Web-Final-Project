@@ -3,6 +3,7 @@ const path = require('path');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const routes = require('./routes');
+const wakeUpDyno = require('./routes/wakeUpDyno.js');
 
 require('dotenv').config()
 const app = express()
@@ -54,5 +55,10 @@ db.once('open', () => {
 routes(app);
 
 const PORT = process.env.PORT || 5000;
+//const DYNO_URL = "http://localhost:4000";
+const DYNO_URL = "https://poke-acs.herokuapp.com";
+app.listen(PORT, () =>{
 
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+  wakeUpDyno(DYNO_URL);
+  console.log(`Server started on port ${PORT}`);
+} );

@@ -17,7 +17,7 @@
   height: 300px;
   position: relative;
   animation-name: example;
-  animation-duration: 8s;
+  animation-duration: 5s;
   animation-direction: reverse;  
   animation-fill-mode: forwards;
 

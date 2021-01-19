@@ -1,9 +1,9 @@
 import axios from 'axios';
-exports.Poke = (req, res) => {
-
-    const POKE_API_ROOT = "https://poke-acs.herokuapp.com/api/guess";
-
-    const pokeInstance = axios.create({
+exports.Poke = async (req, res) => {
+/*
+    //const POKE_API_ROOT = await "https://poke-acs.herokuapp.com/api/guess";
+    const POKE_API_ROOT = "http://localhost:4000";
+    const pokeInstance = await axios.create({
     baseURL: POKE_API_ROOT
     })
 
@@ -15,4 +15,5 @@ exports.Poke = (req, res) => {
         
     } ), 1000 * 3)
     res.status(200).send({message: 'success poking'});
+*/
 }
