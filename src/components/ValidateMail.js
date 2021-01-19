@@ -15,11 +15,12 @@ function ValidateMail(props) {
   const enterRef = useRef(null);
   const handleSubmit = async (event) => {
     event.preventDefault(); 
-    
+    document.getElementById('submit').disabled = "disabled";
     const data = await checkVerifyCode(props.email, varificationCode);
      
     if(data.message === '尚未驗證' ){
       alert('連結資料庫出現問題');
+      document.getElementById('regenerate').disabled = false;
     }else if (data.success === '驗證成功') {
         setVerifySuccess(true);
         const registerSuccess = await registerInDatabase(props.stdID, props.name, props.email);
@@ -37,8 +38,10 @@ function ValidateMail(props) {
         }
     }else if(data.success === '驗證失敗'){
       setWarning("驗證失敗，請再輸入一次");
+      document.getElementById('regenerate').disabled = false;
     }else{
      alert('連結伺服器出現問題，請檢查網路連線')
+     document.getElementById('regenerate').disabled = false;
     }
     
 } 
@@ -49,20 +52,31 @@ function ValidateMail(props) {
     setVarificationCode(e.target.value);
   }
   async function reGenerateCode(email){
+    
     setWarning("驗證信重新寄送中...")
+    document.getElementById('regenerate').disabled = "disabled";
+    setTimeout(() =>  {document.getElementById('regenerate').disabled = false;},30000)
     verifyCodeRef.current.focus();
     const message = await generateCode(email);
-    if(message === '寄送驗證信成功')
-    setWarning("已重新寄送驗證信")
+    if(message === '寄送驗證信成功'){
+      const warn = "已重新寄送驗證信，請於 30 秒後再按下重新寄送"
+      setWarning(warn);
+    }
+    
     else if(message === '寄送驗證信失敗'){
       setWarning("")
       alert('重新寄送驗證信失敗')
     }else if(message === '產生驗證碼失敗'){
       setWarning("")
-      alert('重新產生驗證碼失敗')
     }
     
   }
+
+  function NewlineText(props) {
+    const text = props.text;
+    return <div id="newline">{text}</div>;
+  }
+
   function backToHomePage(){
     setBackToHome(true);
     
@@ -91,12 +105,12 @@ function ValidateMail(props) {
               }
             }></input>
           </div>
-          <input className="design-button" ref ={enterRef} type='submit' value='送出' disabled={!validateForm()}></input>
+          <input className="design-button" id="submit" ref ={enterRef} type='submit' value='送出' disabled={!validateForm()}></input>
           <br/>
           
           </form>
-          <button className="design-button" type="primary" onClick={() => {reGenerateCode(props.email)}}>重新寄送驗證碼</button>
-          <div>{warning}</div>
+          <button className="design-button" id="regenerate" type="primary" onClick={() => {reGenerateCode(props.email)}}>重新寄送驗證碼</button>
+          <NewlineText text={warning} />
           </div>
           : <div className="pass-page">
             <div>驗證通過{registerInDatabaseSuccess}</div>
