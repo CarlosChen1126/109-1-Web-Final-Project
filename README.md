@@ -68,10 +68,12 @@ https://acs-web-final-project.herokuapp.com
 ## Contributing 個別貢獻
 
 * 王政邦
-1. 管理端管理頁面查詢、修改、刪除
-2. google api 語音辨識輸入功能
+1. 管理端管理頁面對於使用者的查詢、修改、刪除
+2. rpi上google api 語音辨識及語音輸入套件使用
 3. 刷卡進出的流程、錯誤處理
 4. 顯示使用者的進出記錄
+5. 利用material-ui來優化表格及輸入框
+6. 網頁美化建議
     
 * 張原嘉
 1. 首頁動畫
