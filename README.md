@@ -5,7 +5,7 @@ https://acs-web-final-project.herokuapp.com
 
 ## Demo 影片連結
 
-## 管理者帳密
+## 提供一組管理者帳密
 帳號：ACS
 密碼：aloha
 
@@ -58,9 +58,8 @@ https://acs-web-final-project.herokuapp.com
 1. nodemailer 寄信程式
 2. wake up dyno 陳柏志助教的 code https://github.com/TobyChen0106/109-1-web-deploy-tutorial
 3. 參考 web programming hackathon 第二、第三次的 code
-4. 參考電機二手書 EESHB 前端的程式碼
+4. 參考電機二手書 EESHB 前端的程式碼 https://github.com/ycchang0324/EESHB
 5. icon 及 favicon.ico 由網路上抓取 https://www.flaticon.com/
-6. 
 
 ## Contributing 個別貢獻
 
