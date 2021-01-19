@@ -13,6 +13,6 @@ exports.Poke = (req, res) => {
               } = pokeInstance.get('/poke');
         console.log('poking')
         
-    } ), 1000 * 300)
+    } ), 1000 * 3)
     res.status(200).send({message: 'success poking'});
 }

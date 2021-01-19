@@ -87,7 +87,7 @@ function EmailSettings() {
          <h4>信箱帳密更改</h4>
          <div>
              {'信箱帳號'}
-             <input ref={accountRef} placeholder="信箱帳號" name='email' value={account} style={{ marginBottom: 10 }} onChange={handleAccountChange}
+             <input ref={accountRef} type="email" placeholder="信箱帳號" name='email' value={account} style={{ marginBottom: 10 }} onChange={handleAccountChange}
              onKeyDown={(e) => {
               if (e.key === 'Enter') {
                 passwordRef.current.focus()

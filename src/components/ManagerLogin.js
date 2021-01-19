@@ -42,18 +42,19 @@ function ManagerLogin() {
         setAccountExist(result);
         
         setLoading(false);
-        if(result){
-          accountRef.current.focus() 
-        }
+        
       }  
       );
     
         
     }
+    if(!loading){
+      accountRef.current.focus() 
+    }
     checkAccount();
     
     
-},[]) 
+},[loading]) 
     
   const handleAccountChange = (e) => {
     setAccount(e.target.value);
