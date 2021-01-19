@@ -1,4 +1,3 @@
-const pokeRoute = require('./poke');
 const loginRoute = require('./login');
 const registerRoute = require('./register');
 const verifyRoute = require('./verify');
@@ -9,7 +8,6 @@ const emailRoute = require('./email');
 const wrap = fn => (...args) => fn(...args).catch(args[2])
 
 function main(app) {
-  app.get('/api/poke', wrap(pokeRoute.Poke));
   app.post('/api/checkAccountIsExist', wrap(loginRoute.CheckAccountIsExist));
   app.get('/api/getManagerAccount', wrap(loginRoute.GetManagerAccount));
   app.post('/api/updateManagerAccount', wrap(loginRoute.UpdateManagerAccount))

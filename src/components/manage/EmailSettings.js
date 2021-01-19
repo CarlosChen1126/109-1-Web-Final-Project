@@ -17,6 +17,7 @@ function EmailSettings() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    document.getElementById('submit').disabled = "disabled";
     setWarning('修改中...');
     const data = await editEmailAccount(account, password);
     if(data === 'success'){
@@ -32,6 +33,7 @@ function EmailSettings() {
     }else{
       alert('修改失敗');
       setWarning('');
+      document.getElementById('submit').disabled = false;
     }
     
   }
@@ -79,7 +81,6 @@ function EmailSettings() {
     setPassword(e.target.value);
   }
  
-  // TODO : fill in the rendering contents and logic
   
   return (
     <div>
@@ -108,7 +109,7 @@ function EmailSettings() {
              ></input>
          </div>
          <div>{warning}</div>
-         <input className="submit-button" ref ={enterRef} type="submit" value="修改" disabled={!validateForm()}/>
+         <input className="submit-button" id="submit" ref ={enterRef} type="submit" value="修改" disabled={!validateForm()}/>
          
        </form>
   </div>

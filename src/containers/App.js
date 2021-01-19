@@ -23,7 +23,6 @@ import loginIcon from '../assets/login.png';
 function App() {
 
   const [people, setPeopleNum] = useState('載入中...');
-  //const [administrator,setAdministrator] = useState("");
   
   useEffect (()=>{
     localStorage.setItem('auth',false)

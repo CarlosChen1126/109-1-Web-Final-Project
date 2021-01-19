@@ -21,7 +21,6 @@ const CurrentAdministrator = (props) => {
     
         if(nameList.length > 0){
             const returnName = nameList.map((person) => <span>{person.name} </span>);
-            console.log(returnName)
             return returnName;
         }
         else{
@@ -41,7 +40,6 @@ function ShowAdministrator() {
         
         if(!data.length && !isUnmount){
            getAdministrator().then(result => {
-            //console.log(result)   
             setData(result)
         })
         }

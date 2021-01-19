@@ -17,6 +17,7 @@ function AccountSettings() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    document.getElementById('submit').disabled = "disabled";
     setWarning('修改中...');
     const data = await editManagerAccount(account, password);
     if(data === 'success'){
@@ -32,6 +33,7 @@ function AccountSettings() {
     }else{
       alert('修改失敗');
       setWarning('');
+      document.getElementById('submit').disabled = false;
     }
     
   }
@@ -108,7 +110,7 @@ function AccountSettings() {
              ></input>
          </div>
          <div>{warning}</div>
-         <input className="submit-button" ref ={enterRef} type="submit" value="修改" disabled={!validateForm()}/>
+         <input className="submit-button" id="submit" ref ={enterRef} type="submit" value="修改" disabled={!validateForm()}/>
          
        </form>
   </div>

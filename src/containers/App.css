@@ -54,7 +54,7 @@ li .hover-hint {
     margin-left: -30px;
     height: 30px;
     
-    /* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
+  
     opacity: 0;
     transition: opacity 1s;
 }

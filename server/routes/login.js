@@ -1,8 +1,7 @@
 const Login = require('../models/login');
 
 exports.CheckAccountIsExist = async (req, res) => {
-    //const login = new Login({account: 'ACS', password: 'aloha'});
-    //login.save();
+
 
     const loginResult = await Login.find({});
     if(loginResult.length){
@@ -12,8 +11,7 @@ exports.CheckAccountIsExist = async (req, res) => {
         res.status(200).send({message: false});
     }
      
-    // TODO : get answers from mongodb,
-    // check answers coming from frontend and return score to frontend
+
 }
 
 exports.GetManagerAccount = async (req, res) => {
@@ -26,7 +24,6 @@ exports.GetManagerAccount = async (req, res) => {
             res.status(200).send({message: '連結資料庫成功', account: managerResult.account,password: managerResult.password});
         }
         else{
-            console.log('nothing');
             res.status(200).send({message: '尚無資料', account: '',password: ''});
         }
       });
@@ -39,7 +36,6 @@ exports.UpdateManagerAccount = async (req, res) => {
     const managerAccount = Login.findOne();
     managerAccount.exec(function (err, managerResult) {
         if (err) {
-            console.log('err');
             res.status(500).send({message: '連結資料庫失敗', account: '',password: ''});
 
         }
@@ -86,14 +82,10 @@ exports.AddManagerAccount = async (req, res) => {
         res.status(200).send({message: '新增管理員帳密失敗'});
     }); 
 
-     
-    // TODO : get answers from mongodb,
-    // check answers coming from frontend and return score to frontend
 }
 
 exports.Login = async (req, res) => {
-    //const login = new Login({account: 'ACS', password: 'aloha'});
-    //login.save();
+
     const account = req.body.account;
     const password = req.body.password;
     const loginResult = await Login.find({account: account, password: password});
@@ -103,7 +95,5 @@ exports.Login = async (req, res) => {
     else{
         res.status(200).send({message: 'failed'});
     }
-     
-    // TODO : get answers from mongodb,
-    // check answers coming from frontend and return score to frontend
+
 }

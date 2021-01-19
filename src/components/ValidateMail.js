@@ -110,4 +110,3 @@ function ValidateMail(props) {
 }
 
 export default ValidateMail;
-//export {verifyResult};

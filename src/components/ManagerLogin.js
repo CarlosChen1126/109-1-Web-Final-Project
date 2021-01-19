@@ -36,16 +36,16 @@ function ManagerLogin() {
     return account.length > 0 && password.length > 0;
   }
   useEffect (()=>{
-    
     async function checkAccount(){
-      checkAccountIsExist().then(result => {
+      await checkAccountIsExist().then(result =>  {
+        
         setAccountExist(result);
         
+
         setLoading(false);
         
-      }  
-      );
-    
+      }    
+      );  
         
     }
 
@@ -66,7 +66,7 @@ function ManagerLogin() {
   }
   else{
     if(accountExist){
-      // TODO : fill in the rendering contents and logic
+
       if(loginSuccess){
         return  <Redirect to="/Manage" />
       }else{
@@ -76,7 +76,7 @@ function ManagerLogin() {
                <h4 className="ManagerLogin-title">管理員登入</h4>
                <div>
                    {'帳號'}
-                   <input ref={accountRef} placeholder="管理者帳號" name='account' value={account} style={{ marginBottom: 10 }} onChange={handleAccountChange}
+                   <input ref={accountRef} autoFocus="true" placeholder="管理者帳號" name='account' value={account} style={{ marginBottom: 10 }} onChange={handleAccountChange}
                    onKeyDown={(e) => {
                     if (e.key === 'Enter') {
                       passwordRef.current.focus()

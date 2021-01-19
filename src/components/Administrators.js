@@ -16,8 +16,7 @@ function Administrator() {
 
         
         if(!data.length&&!isUnmount){
-           getAdministrator().then(result => {
-            //console.log(result)   
+           getAdministrator().then(result => { 
             setData(result)
             setLoading(false);
         })
@@ -29,7 +28,6 @@ function Administrator() {
     const AdministratorColumn = (props) => {
         if(data.length){
             const nameList = data.filter(data => (data.day === props.day && data.time === props.time));
-            //console.log(nameList);
             if(nameList.length > 0){
                 const returnName = nameList.map((person) => <span>{person.name}<br/></span>);
                 return returnName;
@@ -58,7 +56,7 @@ function Administrator() {
         )
     }
     
-  // TODO : fill in the rendering contents and logic
+ 
   if(loading){
       return(<div className="center"><img src={loadingGif} alt="loading" width="250"></img></div>)
   }else{

@@ -78,11 +78,9 @@ const getUserTime = async (number) => {
 
     
     if(message==='success'){
-      console.log('success fuck')
       return time;
     }
     else{
-      console.log('dead')
       return ([""]);
     }
 }
@@ -129,8 +127,7 @@ const generateCode = async (email) => {
       err: err
       }
     } = await instance.post('/generateCode',  {email: email});
-    
-    console.log(message);
+
     return await message;
 }
 

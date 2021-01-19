@@ -4,9 +4,9 @@ import  ValidateMail  from './ValidateMail';
 import './Registrants.css';
 
 function Registrants() {
-  const [registerSuccess, setRegisterSuccess] = useState(false)  // true if answered all questions
-  const [stdID, setStdID] = useState("");     // to store questions
-  const [name, setName] = useState("");               // to record your answers
+  const [registerSuccess, setRegisterSuccess] = useState(false)  
+  const [stdID, setStdID] = useState("");    
+  const [name, setName] = useState("");              
   const [email, setEmail] = useState("");
   const [warning, setWarning] = useState("");
   const stdIDRef = useRef(null);
@@ -20,7 +20,6 @@ function Registrants() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     document.getElementById('submit').disabled = "disabled";
-    console.log('in handle submit');
     const stdIDUpp = stdID.toUpperCase();
     setStdID(stdIDUpp);
     const success = await registerCheck( stdIDUpp, name, email );

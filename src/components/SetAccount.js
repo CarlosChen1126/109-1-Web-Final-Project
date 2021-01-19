@@ -14,6 +14,7 @@ function SetAccount() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    document.getElementById('submit').disabled = "disabled";
     setWarning('新增中...');
     const data = await addManagerAccount(account, password);
     if(data === '新增管理員帳密成功'){
@@ -23,6 +24,7 @@ function SetAccount() {
     }else if(data === '新增管理員帳密失敗'){
       alert('新增失敗');
       setWarning('');
+      document.getElementById('submit').disabled = false;
        window.location.reload();
     }
     
@@ -53,11 +55,11 @@ function SetAccount() {
     setPassword(e.target.value);
   }
  
-  // TODO : fill in the rendering contents and logic
+ 
   
   return (
     <div>
-         <form  onSubmit={handleSubmit}>
+         <form onSubmit={handleSubmit}>
          <h4>新增管理員帳密</h4>
          <div>
              {'管理員帳號'}
@@ -82,7 +84,7 @@ function SetAccount() {
              ></input>
          </div>
          <div>{warning}</div>
-         <input className="submit-button" ref ={enterRef} type="submit" value="新增" disabled={!validateForm()}/>
+         <input className="submit-button" id="submit" ref ={enterRef} type="submit" value="新增" disabled={!validateForm()}/>
          
        </form>
   </div>

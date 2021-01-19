@@ -134,8 +134,7 @@ const InsertMode = (props) => {
   
     
 }
-    
-  // TODO : fill in the rendering contents and logic
+
   if(loading){
     return(<div className="center"><img src={loadingGif} alt="loading" width="250"></img></div>)
 }else{

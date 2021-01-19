@@ -28,7 +28,6 @@ exports.GenerateCode = async (req, res) => {
         else {
             async function sendMailResult(email, verifyCode){
                 const sendMailResult = await sendMail(email, verifyCode);
-                console.log('sendMailResult: ' + sendMailResult);
                 if(sendMailResult === false){
                     res.status(200).send({message: '寄送驗證信失敗', error: err});
                 }else if(sendMailResult === true){
@@ -54,7 +53,6 @@ exports.CheckVerifyCode = async (req, res) => {
 
     const isVerify = Verify.findOne({email: email, verifyCode: verifyCode});
 
-    console.log(isVerify);
     isVerify.exec(function (err, verifyResult) {
         if (err) {
             console.log('err');
@@ -62,12 +60,9 @@ exports.CheckVerifyCode = async (req, res) => {
 
         }
         else if(verifyResult){
-            console.log(verifyResult.length);
             res.status(200).send({message: '已驗證',success: '驗證成功'});
         }
         else{
-            console.log(verifyResult);
-            console.log('failed');
             res.status(200).send({message: '已驗證', success: '驗證失敗'});
         
       }});
