@@ -58,6 +58,7 @@ https://acs-web-final-project.herokuapp.com
 ## 使用與參考之框架/模組/原始碼
 * 前端：React、react-router-dom、material-ui、babel
 * 後端：cors、express、babel、mongoose、dotenv、mongoose、node-fetch、nodemon
+* 硬體端：pyserial、gtts、pyaudio、pymongo、python-dotenv
 ## 專題製作心得
 
 * 張原嘉
@@ -69,6 +70,7 @@ https://acs-web-final-project.herokuapp.com
 3. 參考 web programming hackathon 第二、第三次的 code
 4. 參考電機二手書 EESHB 前端的程式碼 https://github.com/ycchang0324/EESHB
 5. icon 及 favicon.ico 由網路上抓取 https://www.flaticon.com/
+6.硬體端部分用了google api的語音辨識（
 
 ## Contributing 個別貢獻
 
@@ -94,7 +96,7 @@ https://acs-web-final-project.herokuapp.com
 2. 卡片資料從刷卡機置 rpi
 2. 硬體配置(rpi、刷卡機、麥克風、喇叭)
 3. 語音撥放功能
-4. 讀取語音硬體端
+4. 讀取語音硬體端 + google api語音辨識
 5. 刷卡進出的流程、錯誤處理
 
 ## 是否有找外掛
