@@ -5,6 +5,10 @@ https://acs-web-final-project.herokuapp.com
 
 ## Demo 影片連結
 
+## 管理者帳密
+帳號：ACS
+密碼：aloha
+
 ## 描述這個服務在做甚麼
 這個服務提供一般使用者及管理者門禁系統，有以下功能：
 
@@ -48,7 +52,7 @@ https://acs-web-final-project.herokuapp.com
 ## 專題製作心得
 
 * 張原嘉
-好累
+做期末專題最大的困難就是註冊按鈕按下時要預防有人連續按 enter，這會導致連續寄信，另外我們的 loading gif 讓頁面豐富許多，而且我們的 link 上有做一些小巧思，非常的開心，唯一可惜的地方是我們沒有用 websocket，不能及時在瀏覽器上更新資料
 
 ## 使用之第三方套件、框架、程式碼
 1. nodemailer 寄信程式
