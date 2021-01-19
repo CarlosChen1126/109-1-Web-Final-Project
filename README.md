@@ -49,6 +49,7 @@ https://acs-web-final-project.herokuapp.com
 ## 使用與參考之框架/模組/原始碼
 前端：React、react-router-dom、material-ui、babel
 後端：cors、express、babel、mongoose、dotenv、mongoose、node-fetch、nodemon
+硬體端：pyserial、
 ## 專題製作心得
 
 * 張原嘉
