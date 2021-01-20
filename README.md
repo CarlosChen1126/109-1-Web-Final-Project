@@ -19,7 +19,7 @@ https://acs-web-final-project.herokuapp.com
 ## 如何使用 硬體端 code
 刷入: 
    1. pip install pymongo/pyaudio/pyserial/gtts/numpy/dotenv/time/speech_recognition/subprocess
-   2. python3 serialinput.py
+   2. python3 serialinput.py 
 刷出: 
    1. pip install pymongo/pyaudio/pyserial/gtts/numpy/dotenv/time/speech_recognition/subprocess
    2. python3 serialinput_out.py
