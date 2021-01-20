@@ -4,6 +4,7 @@
 https://acs-web-final-project.herokuapp.com
 
 ## Demo 影片連結
+https://www.youtube.com/watch?v=v_JoVTYAjyQ
 
 ## 提供一組管理者帳密
 * 帳號：ACS
@@ -68,13 +69,13 @@ https://acs-web-final-project.herokuapp.com
 * 後端：cors、express、babel、mongoose、dotenv、mongoose、node-fetch、nodemon
 * 資料庫：MongoDB Atlas
 * 硬體端：pyserial、gtts、pyaudio、pymongo、python-dotenv
-## 專題製作心得
 
+## 專題製作心得
 * 張原嘉
     * 做期末專題最大的困難就是註冊按鈕按下時要預防有人連續按 enter，這會導致連續寄信，另外我們的 loading gif 讓頁面豐富許多，而且我們的 link 上有做一些小巧思，非常的開心，唯一可惜的地方是我們沒有用 websocket，不能及時在瀏覽器上更新資料
     
 * 王政邦
-   * 第一次做一個包含軟體跟硬體的project，感覺蠻有趣的，在製作的過程中也學到許多網路服務的實作細節，比較特別的是使用第三方的api其實沒有想像中的困難，只要有耐心跟心地善良就可以讓硬體端執行想要它做的事情，也希望未來還有機會做網路服務的相關project。
+   * 第一次做一個包含軟體跟硬體的 project，感覺蠻有趣的，在製作的過程中也學到許多網路服務的實作細節，比較特別的是使用第三方的 api 其實沒有想像中的困難，只要有耐心跟心地善良就可以讓硬體端執行想要它做的事情，也希望未來還有機會做網路服務的相關 project。
 
 * 陳宥辰
    * 這次專題我做的是硬體端的部分，我學到了很多自主學習的部分，也讓我更有信心去面對未知的領域，希望之後如果有其他專題的話，自己不管是硬體端或是軟體端都能有更多的貢獻。
@@ -85,17 +86,17 @@ https://acs-web-final-project.herokuapp.com
 3. 參考 web programming hackathon 第二、第三次的 code
 4. 參考電機二手書 EESHB 前端的程式碼
 5. icon 及 favicon.ico 由網路上抓取 https://www.flaticon.com/
-6. 硬體端部分用了google api的語音辨識
-7. material-ui的官方table模板
+6. 硬體端部分用了 google api 的語音辨識
+7. material-ui 的官方 table 模板
 
 ## Contributing 個別貢獻
 
 * 王政邦
 1. 管理端管理頁面對於使用者的查詢、修改、刪除
-2. rpi上google api 語音辨識及語音輸入套件使用
+2. rpi 上 google api 語音辨識及語音輸入套件使用
 3. 刷卡進出的流程、錯誤處理
 4. 顯示使用者的進出記錄
-5. 利用material-ui來優化表格及輸入框
+5. 利用 material-ui 來優化表格及輸入框
 6. 網頁美化建議
     
 * 張原嘉
@@ -114,7 +115,7 @@ https://acs-web-final-project.herokuapp.com
 2. 卡片資料從刷卡機置 rpi
 2. 硬體配置(rpi、刷卡機、麥克風、喇叭)
 3. 語音撥放功能
-4. 讀取語音硬體端 + google api語音辨識
+4. 讀取語音硬體端 + google api 語音辨識
 5. 刷卡進出的流程、錯誤處理
 
 ## 是否有找外掛
