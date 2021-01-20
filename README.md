@@ -66,6 +66,7 @@ https://acs-web-final-project.herokuapp.com
 ## 使用與參考之框架/模組/原始碼
 * 前端：React、react-router-dom、material-ui、babel
 * 後端：cors、express、babel、mongoose、dotenv、mongoose、node-fetch、nodemon
+* 資料庫：MongoDB Atlas
 * 硬體端：pyserial、gtts、pyaudio、pymongo、python-dotenv
 ## 專題製作心得
 
@@ -106,7 +107,7 @@ https://acs-web-final-project.herokuapp.com
 6. 信箱設定
 7. loading gif
 8. deploy 到 heroku，根據陳柏志助教的 heroku 教學實施 wake up dyno
-9. react router dom
+9. react router dom 建置前端後端連接
 
 * 陳宥辰
 1. rpi 資料儲存到資料
