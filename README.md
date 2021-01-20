@@ -4,7 +4,7 @@
 https://acs-web-final-project.herokuapp.com
 
 ## Demo 影片連結
-https://www.youtube.com/watch?v=EvwaAKOKq0U
+https://www.youtube.com/watch?v=JOEMg79010M
 
 ## 提供一組管理者帳密
 * 帳號：ACS
@@ -47,7 +47,7 @@ https://www.youtube.com/watch?v=EvwaAKOKq0U
 * 一般使用者
 1. 至使用者註冊頁面填寫帳號、密碼、信箱，系統會寄送驗證信，填寫驗證碼即成功註冊
 2. 若要進入 makerspace，將學生證放在刷卡機前面刷卡，硬體會問使用者進來做甚麼，讀取聲音後會將記錄儲存至資料庫，並且登記此人為在線
-3. 若離開 makerspace，將學生證方在刷卡機前面刷卡，讀取條碼後會將此人登記為離線
+3. 若離開 makerspace，將學生證放在刷卡機前面刷卡，讀取條碼後會將此人登記為離線
 
 * 管理者
 1. 若初次使用網頁，進入管理員登入系統後系統會跳轉至新增管理員帳號密碼
