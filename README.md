@@ -17,7 +17,12 @@ https://acs-web-final-project.herokuapp.com
 3. yarn start(concurrently frontend and backend)
 
 ## 如何使用 硬體端 code
-
+刷入:
+   1.pip install pymongo/pyaudio/pyserial/gtts/numpy/dotenv/time/speech_recognition/subprocess
+   2.python3 serialinput.py
+刷出:
+   1.pip install pymongo/pyaudio/pyserial/gtts/numpy/dotenv/time/speech_recognition/subprocess
+   2.python3 serialinput_out.py
 
 
 ## 描述這個服務在做甚麼
