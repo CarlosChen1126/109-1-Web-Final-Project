@@ -16,6 +16,8 @@ https://acs-web-final-project.herokuapp.com
 
 3. yarn start(concurrently frontend and backend)
 
+## 如何使用 硬體端 code
+
 
 
 ## 描述這個服務在做甚麼
@@ -70,7 +72,7 @@ https://acs-web-final-project.herokuapp.com
 3. 參考 web programming hackathon 第二、第三次的 code
 4. 參考電機二手書 EESHB 前端的程式碼 https://github.com/ycchang0324/EESHB
 5. icon 及 favicon.ico 由網路上抓取 https://www.flaticon.com/
-6.硬體端部分用了google api的語音辨識（
+6. 硬體端部分用了google api的語音辨識
 
 ## Contributing 個別貢獻
 
