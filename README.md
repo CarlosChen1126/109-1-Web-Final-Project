@@ -18,11 +18,11 @@ https://www.youtube.com/watch?v=EvwaAKOKq0U
 3. yarn start(concurrently frontend and backend)
 
 ## 如何使用 硬體端 code
-刷入: 
+* 刷入: 
    1. pip install pymongo/pyaudio/pyserial/gtts/numpy/dotenv/time/speech_recognition/subprocess
    2. python3 serialinput.py 
    
-刷出: 
+* 刷出: 
    1. pip install pymongo/pyaudio/pyserial/gtts/numpy/dotenv/time/speech_recognition/subprocess
    2. python3 serialinput_out.py
 
@@ -35,7 +35,7 @@ https://www.youtube.com/watch?v=EvwaAKOKq0U
 2. 刷入刷出門禁，並且語音記錄進來的原因
 3. 知道目前管理者是誰
 
-* 管理者：
+* 管理者
 1. 紀錄一般使用者的進出情形及進入原因
 2. 顯示在線人員
 3. 某時段管理員更改
