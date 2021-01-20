@@ -4,7 +4,7 @@
 https://acs-web-final-project.herokuapp.com
 
 ## Demo 影片連結
-https://www.youtube.com/watch?v=v_JoVTYAjyQ
+https://www.youtube.com/watch?v=EvwaAKOKq0U
 
 ## 提供一組管理者帳密
 * 帳號：ACS
