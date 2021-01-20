@@ -71,6 +71,9 @@ https://acs-web-final-project.herokuapp.com
 
 * 張原嘉
     * 做期末專題最大的困難就是註冊按鈕按下時要預防有人連續按 enter，這會導致連續寄信，另外我們的 loading gif 讓頁面豐富許多，而且我們的 link 上有做一些小巧思，非常的開心，唯一可惜的地方是我們沒有用 websocket，不能及時在瀏覽器上更新資料
+    
+* 王政邦
+   * 第一次做一個包含軟體跟硬體的project，感覺蠻有趣的，在製作的過程中也學到許多網路服務的實作細節，比較特別的是使用第三方的api其實沒有想像中的困難，只要有耐心跟心地善良就可以讓硬體端執行想要它做的事情，也希望未來還有機會做網路服務的相關project。
 
 ## 使用之第三方套件、框架、程式碼
 1. nodemailer 寄信程式
@@ -79,14 +82,17 @@ https://acs-web-final-project.herokuapp.com
 4. 參考電機二手書 EESHB 前端的程式碼 https://github.com/ycchang0324/EESHB
 5. icon 及 favicon.ico 由網路上抓取 https://www.flaticon.com/
 6. 硬體端部分用了google api的語音辨識
+7. material-ui的官方table模板
 
 ## Contributing 個別貢獻
 
 * 王政邦
-1. 管理端管理頁面查詢、修改、刪除
-2. google api 語音辨識輸入功能
+1. 管理端管理頁面對於使用者的查詢、修改、刪除
+2. rpi上google api 語音辨識及語音輸入套件使用
 3. 刷卡進出的流程、錯誤處理
-4. 顯示單一人的進出記錄
+4. 顯示使用者的進出記錄
+5. 利用material-ui來優化表格及輸入框
+6. 網頁美化建議
     
 * 張原嘉
 1. 首頁動畫
