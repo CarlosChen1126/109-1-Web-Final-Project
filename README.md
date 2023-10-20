@@ -1,4 +1,4 @@
-# Makerspace Management System of Accessing Control
+# Management System of Accessing Control for Makerspace
 
 <!-- ## Deploy link
 https://acs-web-final-project.herokuapp.com
